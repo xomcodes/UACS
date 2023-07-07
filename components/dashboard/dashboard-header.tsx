@@ -1,11 +1,20 @@
 import React from "react";
 import Image from "next/image";
-import { NotificationBing,} from "iconsax-react";
+import { ArrowLeft2, NotificationBing } from "iconsax-react";
 
 import { DropDown } from "./drop-down";
 
-
-export const DashboardHeader = ({children}:{children:React.ReactNode}) => {
+export const DashboardHeader = ({
+  children,
+  pages,
+  text,
+  icon,
+}: {
+  children: React.ReactNode;
+  pages?: string;
+  text: string;
+  icon?: React.ReactNode;
+}) => {
   return (
     <div className=" bg-uacs-eneutral-3 flex flex-col">
       <div className=" flex justify-between bg-white  px-8 border-l border-l-[#EAEAEA] ">
@@ -13,15 +22,20 @@ export const DashboardHeader = ({children}:{children:React.ReactNode}) => {
           <h4 className="border-r-2 border-[#E64D45] pr-2 text-base font-semibold font-[Switzer] ">
             Unified Access Control System
           </h4>
+          <div className="flex gap-3">
+            <h4 className=" font-medium font-[Switzer]  text-base text-uacs-eneutral-7">
+              {text}
+            </h4>
+            <div className="-rotate-90">{icon}</div>
+          </div>
           <h4 className=" font-medium font-[Switzer]  text-base text-uacs-eneutral-7">
-            Dashboard Overview
+            {pages}
           </h4>
         </div>
 
         <div className="flex gap-8  border-l border-l-[#EAEAEA] pl-[3.5rem] items-center ">
           <div className="relative">
-            <NotificationBing size="30" color="#8F8E91" variant="Outline"
-/>
+            <NotificationBing size="30" color="#8F8E91" variant="Outline" />
             <div className=" bg-[#C81107] absolute w-2 h-2 rounded-full right-0 top-[2px] left-5 "></div>
           </div>
 
@@ -47,7 +61,6 @@ export const DashboardHeader = ({children}:{children:React.ReactNode}) => {
       </div>
       {/* Inner */}
       {children}
-
     </div>
   );
 };

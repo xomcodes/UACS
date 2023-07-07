@@ -14,3 +14,30 @@
     box-shadow: 0px 0px 1px 0px rgba(193, 194, 198, 0.40), 0px 6px 6px -6px rgba(193, 194, 198, 0.16);
 }
 
+.edit-shadow{
+    box-shadow: 0px 0px 1px 0px rgba(193, 194, 198, 0.40);
+
+}
+
+.th-name {
+    font-family: Switzer !important;
+    font-weight: 700 !important;
+    font-size: 0.875rem !important;
+    color: #4A4C58 !important;
+    border-bottom: 1px solid #F5F5F5 !important;
+}
+
+.td-name{
+    font-size: 14px !important;
+    font-family: Switzer !important;
+    font-weight: 400 !important;
+    font-size: 0.875rem !important;
+    color: #514747 !important;
+    border-top: 1px solid #F5F5F5 !important;
+}
+
+
+.scroll-bar-hidden::-webkit-scrollbar{
+    display:none
+}
+

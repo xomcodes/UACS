@@ -39,7 +39,7 @@ export default function Home() {
                   system platform.{" "}
                 </p>
               </div>
-             <Button text="take Control"/>
+             <Button text="Take Control" type='primary' size="sm" />
             </div>
           </div>
         </div>

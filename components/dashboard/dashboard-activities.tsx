@@ -55,6 +55,21 @@ import clsx from 'clsx'
         figure: 'bg-[#EBFAF3] p-2 rounded-lg'
     },
 
+    {
+      img: <FolderAdd size="16" color="#E08100" variant="Bold"/>,
+      text: 'Updated Rayeem Yusufs Permission for ComX',
+      editor: 'Gloria Eromonsele',
+      time: '11m ago',
+      figure: 'bg-[#EBFAF3] p-2 rounded-lg'
+  },
+
+  {
+      img: <UserCirlceAdd size="16" color="#1D925D" variant="Outline"/>,
+      text: 'Created a service provider, WorkBench',
+      editor: 'By Goodness Iko-Oji',
+      time: '11m ago',
+      figure: 'bg-[#EBFAF3] p-2 rounded-lg'
+  },
 
 
     
@@ -62,7 +77,7 @@ import clsx from 'clsx'
 
 export const DashboardActivities = () => {
   return (
-    <div className="flex flex-col gap-4 mt-7 bg-white card-shadow rounded-lg">
+    <div className="flex flex-col gap-4 mt-7 bg-white card-shadow rounded-lg h-[60vh] overflow-y-scroll scroll-bar-hidden ">
     <div className="p-6">
     <div className="flex justify-between p-6 items-center">
       <div >
@@ -71,9 +86,12 @@ export const DashboardActivities = () => {
       </div>
 
       <div className="flex gap-2">
-        <h3 className="text-xs font-medium text-uacs-ared-7 ">
+        <Link href='/activities'>
+        <h3 className="text-xs font-medium text-uacs-ared-7 cursor-pointer ">
           View all activities
         </h3>
+        </Link>
+       
         <ArrowRight2 size={14} color="#BF2018" />
       </div>
     </div>
