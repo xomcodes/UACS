@@ -7,7 +7,7 @@ import { Level, People } from "iconsax-react";
 export const AccessCard1 = () => {
   return (
     <div
-      className="flex-1  rounded-lg p-6  bg-no-repeat bg-[top_center] "
+      className="flex-1  rounded-lg p-6    bg-no-repeat bg-[top_center] "
       style={{ backgroundImage: "url('/dashboard/card-bg.png')" }}
     >
       <div className="flex justify-between flex-col h-[202px]">

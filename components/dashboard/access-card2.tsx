@@ -2,6 +2,7 @@ import React from 'react'
 
 import { People } from 'iconsax-react'
 import { ArrowRightIcon } from './arrow-right-icon'
+import Link from 'next/link'
 
 
 export const AccessCard2 = () => {
@@ -18,10 +19,10 @@ export const AccessCard2 = () => {
             </figure>
           </div>
 
-          <div className='flex gap-2.5 items-center '>
+          <Link href="/access-management" className='flex gap-2.5 items-center '>
             <p className='font-[Switzer] font-semibold text-sm text-uacs-ared-7'>View staff list</p>
             <ArrowRightIcon/>
-          </div>
+          </Link>
          </div>
         </div>
   )

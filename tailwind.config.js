@@ -12,6 +12,7 @@ module.exports = {
           eneutral: {
            
             3: '#F5F5F6',
+            5: '#DADADD',
             6: 'C1C2C6',
             7: '#8F9198',
             8 : '#5E606A',
@@ -52,6 +53,10 @@ module.exports = {
           },
           
           primary: {
+            0 :'#F2F2F2' ,
+            40:'#9FA19C',
+            50: '#8B908B',
+            60: '#7C827D',
             90: '#54565B',
             70:'#707673'
           },
@@ -59,10 +64,24 @@ module.exports = {
 
           ablue: {
             5:'#5C70E3',
-          }
+          },
+
+          light: {
+            '03': '97E3BD'
+          },
+
+          beerus:{
+            100: '#EBEBEB'
+          },
+
+
+
+          success:'#0DBF66'
         },
-        
+
        
+        
+      
        },
 
 

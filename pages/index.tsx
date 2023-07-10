@@ -2,9 +2,12 @@ import React from "react";
 
 import { CardIcon, DataIcon, FilesIcon, FingerIcon } from "@/landing-page";
 import { Logo } from "@/shared/logo";
-import { Button } from "@/shared";
+import { Button } from "@mantine/core";
+import { useRouter } from "next/router";
+// import { Button } from "@/shared";
 
 export default function Home() {
+  const {push} = useRouter()
   return (
     <section
       className="bg-cover bg-[top-center] bg-no-repeat h-screen"
@@ -39,7 +42,14 @@ export default function Home() {
                   system platform.{" "}
                 </p>
               </div>
-             <Button text="Take Control" type='primary' size="sm" />
+              
+             {/* <Button text="Take Control" type='primary' size="sm"/> */}
+             
+             <Button  onClick={() =>{
+              push('/sign-in')
+             }} className="bg-uacs-ared-7 hover:bg-red-800  h-10 text-base font-medium text-white w-fit rounded-lg"> Take Control</Button>
+
+
             </div>
           </div>
         </div>

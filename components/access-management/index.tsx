@@ -1,3 +1,4 @@
-import { GrantAccess } from "./grant-access";
+import { EmptyState } from "./empty-state";
+import { AccessTable1 } from "./accesstable1";
 
-export {GrantAccess}
+export {EmptyState,AccessTable1}

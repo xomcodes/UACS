@@ -1,14 +1,18 @@
 import { ArrowLeft2, SearchNormal1 } from 'iconsax-react'
 import React from 'react'
 import { FilterIcon } from './filter-icon'
+import { useRouter } from 'next/router'
 
 export const FilterContainer = () => {
+
+  const {back} = useRouter()
+
   return (
    
     <div className='flex justify-between'>
-    <div className='flex gap-[18px] items-center'>
+    <div onClick={() => back()} className='flex gap-[18px] items-center cursor-pointer'>
     <ArrowLeft2 size="24" color="#292D32" variant="Outline"/>
-        <h3 className='text-sm font-semibold text-uacs-eneutral-11'>Back</h3>
+        <h3  className='text-sm font-semibold text-uacs-eneutral-11 cursor-pointer'>Back</h3>
     </div>
 
 <div className='flex '>
@@ -20,7 +24,7 @@ export const FilterContainer = () => {
     </div>
 
     <div className='px-2 bg-[#DADADD] flex rounded-tr-lg items-center  rounded-br-lg '>
-      <FilterIcon className=' justify-self-center'/>
+      <FilterIcon />
     </div>
 </div>
 

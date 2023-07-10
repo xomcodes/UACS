@@ -1,8 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { ArrowLeft2, NotificationBing } from "iconsax-react";
+import { usePortal } from "@ibnlanre/portal";
 
 import { DropDown } from "./drop-down";
+import { IAuthUser } from "../../pages/sign-in";
 
 export const DashboardHeader = ({
   children,
@@ -15,8 +17,15 @@ export const DashboardHeader = ({
   text: string;
   icon?: React.ReactNode;
 }) => {
+  // I have already declared the initial value of the portal state in the sign-in page
+  // and I have set it to the data i received from my login request. Here I am getting the value
+  // with the key (login-user) and it should give me the value I set after my successful login request
+  // i.e i should now have a first_name, last_name, profile_picture and so on saved in this authUser state
+  // and also in my localStorage
+  const [authUser] = usePortal.local<IAuthUser>("login-user");
+
   return (
-    <div className=" bg-uacs-eneutral-3 flex flex-col">
+    <div className=" bg-uacs-eneutral-3 overflow-auto flex flex-col">
       <div className=" flex justify-between bg-white  px-8 border-l border-l-[#EAEAEA] ">
         <div className="flex gap-3 p-[18px] ">
           <h4 className="border-r-2 border-[#E64D45] pr-2 text-base font-semibold font-[Switzer] ">
@@ -41,7 +50,8 @@ export const DashboardHeader = ({
 
           <div className="flex gap-4 items-center">
             <Image
-              src="/dashboard/profile-pix.png"
+              src="/profile-img/image 2.svg"
+              // src={authUser?.profile_picture}
               width="52"
               height="52"
               alt="profile-pix"
@@ -49,7 +59,7 @@ export const DashboardHeader = ({
             />
             <div className="flex flex-col gap-1">
               <h3 className="font-[Switzer] text-sm font-semibold text-uacs-eneutral-11">
-                Joshua Simire
+                {authUser?.first_name} {authUser?.last_name}
               </h3>
               <p className="font-[Switzer] text-xs text-uacs-eneutral-7 font-normal">
                 Admin

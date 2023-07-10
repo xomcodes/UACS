@@ -14,6 +14,10 @@
     box-shadow: 0px 0px 1px 0px rgba(193, 194, 198, 0.40), 0px 6px 6px -6px rgba(193, 194, 198, 0.16);
 }
 
+.sp-card-shadow{
+    box-shadow: 10px 10px 33px 0px rgba(176, 183, 195, 0.08)
+}
+
 .edit-shadow{
     box-shadow: 0px 0px 1px 0px rgba(193, 194, 198, 0.40);
 
@@ -24,6 +28,13 @@
     font-weight: 700 !important;
     font-size: 0.875rem !important;
     color: #4A4C58 !important;
+    border-bottom: 1px solid #F5F5F5 !important;
+}
+.th-sp {
+    font-family: Switzer !important;
+    font-weight: 400 !important;
+    font-size: 0.875rem !important;
+    color: #514747 !important;
     border-bottom: 1px solid #F5F5F5 !important;
 }
 
@@ -37,7 +48,36 @@
 }
 
 
+.sign-in-shadow{
+    box-shadow: 0px 4px 44px 0px rgba(0, 0, 0, 0.16);
+}
+
 .scroll-bar-hidden::-webkit-scrollbar{
     display:none
 }
 
+input:focus-within {
+    border-color: #BF2018 !important;
+}
+.mantine-PasswordInput-input:focus-within {
+    border-color: #BF2018 !important;
+}
+.mantine-PasswordInput-input input:focus-within {
+    border: none !important
+}
+
+.sp-info-bg{
+    background: rgba(0, 137, 200, 0.10)
+}
+
+.sp-info-shadow{
+    box-shadow: 0px 0px 3.668933153152466px 0px rgba(255, 255, 255, 0.63) inset;
+}
+
+.sp-info-filter{
+    backdrop-filter: blur(7.796483516693115px);
+}
+
+.btn-shadow{
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05)
+}

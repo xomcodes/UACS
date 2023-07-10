@@ -51,7 +51,7 @@ export function SecurityLog() {
   const rows = elements.map((element) => (
     <tr key={element.action} className=" ">
       <td className="td-name  ">Attempted login to <span className="font-bold">{element.action}</span></td>
-      <td className={clsx('td-name', element.result === 'Failed' ? ' text-uacs-ared-6' : 'text-uacs-agreen-7')}>{element.result}</td>
+      <td className={clsx(element.result === 'Failed' ? ' text-uacs-ared-6' : 'text-uacs-agreen-7', 'td')}>{element.result}</td>
       <td className="td-name ">{element.serviceProvider}</td>
       <td className="td-name"><span className="flex flex-col gap-1">
         {element.timestamp.map((item, index) => (
