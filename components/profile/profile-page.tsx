@@ -2,17 +2,18 @@ import { BtnwithIcon } from "@/shared";
 import Image from "next/image";
 import React from "react";
 import { Mobile } from "./mobile";
+import { Button } from "@mantine/core";
 
 export const ProfilePage = () => {
   return (
-    <div className="bg-white px-20 pt-14 pb-20  flex flex-col gap-14">
+    <div className="bg-white px-20 pt-14 pb-20  flex flex-col gap-14 ">
       <div className="flex justify-between">
         <div className="flex gap-10">
           <Image
             src="/profile-img/image 2.svg"
             width={200}
             height={200}
-            alt="profile-ing"
+            alt="profile-img"
             className="rounded-full"
           />
 
@@ -26,7 +27,12 @@ export const ProfilePage = () => {
             </p>
           </div>
         </div>
-        <BtnwithIcon text="Connect to mobile" className="!py-2 !px-3" icon="" />
+
+        <Button
+              leftIcon={
+                <Mobile/>
+              } className="bg-uacs-ared-7 rounded-lg hover:bg-red-800 h-[38px]  "
+            > Connect to mobile</Button>
       </div>
 
       <div className="flex flex-col gap-10">

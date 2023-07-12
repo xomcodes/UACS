@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import { ArrowLeft2, NotificationBing } from "iconsax-react";
+import { ArrowDown2, ArrowLeft2, NotificationBing } from "iconsax-react";
 import { usePortal } from "@ibnlanre/portal";
 
 import { DropDown } from "./drop-down";
 import { IAuthUser } from "../../pages/sign-in";
+import { ProfilePopUp } from "@/pop-ups";
 
 export const DashboardHeader = ({
   children,
@@ -48,7 +49,7 @@ export const DashboardHeader = ({
             <div className=" bg-[#C81107] absolute w-2 h-2 rounded-full right-0 top-[2px] left-5 "></div>
           </div>
 
-          <div className="flex gap-4 items-center">
+          <div className="flex relative gap-4 items-center">
             <Image
               src="/profile-img/image 2.svg"
               // src={authUser?.profile_picture}
@@ -65,7 +66,8 @@ export const DashboardHeader = ({
                 Admin
               </p>
             </div>
-            <DropDown />
+            {/* <ArrowDown2 color="#8F8E91"  size='18'/> */}
+            <ProfilePopUp  />
           </div>
         </div>
       </div>

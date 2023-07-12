@@ -9,31 +9,47 @@ import { Button, clsx } from "@mantine/core";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-
-
-
-
 export const DashboardAside = () => {
-  const { pathname } = useRouter();
+  const { pathname, push } = useRouter();
   const asideList = [
     {
-      img: <Home3 size="20" variant={pathname.includes("dashboard") ? "Bold" : "Outline"} />,
+      img: (
+        <Home3
+          size="20"
+          variant={pathname.includes("dashboard") ? "Bold" : "Outline"}
+        />
+      ),
       name: "Dashboard Overview",
       link: "/dashboard",
     },
     {
-      img: <Briefcase size="20" variant={pathname.includes("service-provider") ? "Bold" : "Outline"} />,
+      img: (
+        <Briefcase
+          size="20"
+          variant={pathname.includes("service-provider") ? "Bold" : "Outline"}
+        />
+      ),
       name: "Service Provider",
       link: "/service-provider",
     },
     {
-      img: <People size="20" variant={pathname.includes("access-management") ? "Bold" : "Outline"} />,
+      img: (
+        <People
+          size="20"
+          variant={pathname.includes("access-management") ? "Bold" : "Outline"}
+        />
+      ),
       name: "Access Management",
       link: "/access-management",
     },
-  
+
     {
-      img: <LogIcon size="20" variant={pathname.includes("logs") ? "Bold" : "Outline"} />,
+      img: (
+        <LogIcon
+          size="20"
+          variant={pathname.includes("logs") ? "Bold" : "Outline"}
+        />
+      ),
       name: "Logs",
       children: [
         { name: "Security Log", link: "/logs/security" },
@@ -41,14 +57,19 @@ export const DashboardAside = () => {
       ],
     },
   ];
-  
+
   const downList = [
     {
-      img: <UserEdit size="20" variant={pathname.includes("profile") ? "Bold" : "Outline"} />,
+      img: (
+        <UserEdit
+          size="20"
+          variant={pathname.includes("profile") ? "Bold" : "Outline"}
+        />
+      ),
       name: "Profile",
       link: "/profile",
     },
-  
+
     {
       img: (
         <LogoutCurve
@@ -59,7 +80,7 @@ export const DashboardAside = () => {
         />
       ),
       name: "Logout",
-      action: () => {},
+      action: () => { push('/')},
     },
   ];
   return (
@@ -91,7 +112,15 @@ export const DashboardAside = () => {
             {asideList.map((item) =>
               !item.children ? (
                 <Link href={item.link} key={item.name}>
-                  <div key={item.name} className={clsx(pathname.includes(item.link) ? "text-uacs-ared-7" : "text-uacs-eneutral-9", "flex gap-3 items-center")}>
+                  <div
+                    key={item.name}
+                    className={clsx(
+                      pathname.includes(item.link)
+                        ? "text-uacs-ared-7"
+                        : "text-uacs-eneutral-9",
+                      "flex gap-3 items-center"
+                    )}
+                  >
                     <div className=""> {item.img} </div>
                     <h2 className="  hover:text-uacs-ared-7 font-medium font-[Switzer] text-[0.9rem]">
                       {item.name}
@@ -110,7 +139,13 @@ export const DashboardAside = () => {
                   <div className="flex flex-col gap-4 border-l  border-l-[#DADADD] ml-6">
                     {item.children.map((ele) => (
                       <Link href={ele.link} className="  pl-3">
-                        <h3 className="text-xs font-medium text-uacs-eneutral-7">
+                        <h3
+                          className={clsx(
+                            pathname.includes(ele.link)
+                              ? " bg-uacs-eneutral-5 py-[2px]  border-l border-l-[#5E606A] pl-2 text-uacs-eneutral-8 text-xs font-medium rounded-r-lg "
+                              : "text-xs font-medium text-uacs-eneutral-7"
+                          )}
+                        >
                           {ele.name}
                         </h3>
                       </Link>
@@ -131,10 +166,15 @@ export const DashboardAside = () => {
                   <Link
                     href={item.link}
                     key={item.name}
-                    className="flex gap-3 items-center"
+                    className={clsx(
+                      pathname.includes(item.link)
+                        ? "text-uacs-ared-7"
+                        : "text-uacs-eneutral-9",
+                      "flex gap-3 items-center"
+                    )}
                   >
                     {item.img}
-                    <h2 className=" text-uacs-eneutral-9 hover:text-uacs-ared-7 font-medium font-[Switzer] text-[0.9rem]">
+                    <h2 className="  hover:text-uacs-ared-7 font-medium font-[Switzer] text-[0.9rem]">
                       {item.name}
                     </h2>
                   </Link>
@@ -142,7 +182,7 @@ export const DashboardAside = () => {
                   <div
                     onClick={item.action}
                     key={item.name}
-                    className="flex gap-3 items-center"
+                    className="flex gap-3 items-center cursor-pointer "
                   >
                     {item.img}
                     <h2 className=" text-uacs-eneutral-9 hover:text-uacs-ared-7 font-medium font-[Switzer] text-[0.9rem]">

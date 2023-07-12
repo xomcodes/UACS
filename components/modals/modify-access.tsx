@@ -2,31 +2,31 @@ import { Button, Modal, Switch, TextInput } from "@mantine/core";
 import React from "react";
 
 const spList = [
-    {
-        sp : 'ComX Admin',
-        actionAccess: <Switch/>,
-    },
+  {
+    sp: "ComX Admin",
+    actionAccess: <Switch />,
+  },
 
-    {
-        sp : 'WorkBench',
-        actionAccess: <Switch/>,
-    },
+  {
+    sp: "WorkBench",
+    actionAccess: <Switch />,
+  },
 
-    {
-        sp : 'ECN',
-        actionAccess: <Switch/>,
-    },
+  {
+    sp: "ECN",
+    actionAccess: <Switch />,
+  },
 
-    {
-        sp : 'Cuddie Admin',
-        actionAccess: <Switch/>,
-    },
+  {
+    sp: "Cuddie Admin",
+    actionAccess: <Switch />,
+  },
 
-    {
-        sp : 'Xpert Business Card',
-        actionAccess: <Switch/>,
-    }
-]
+  {
+    sp: "Xpert Business Card",
+    actionAccess: <Switch />,
+  },
+];
 
 export function ModifyAccess({
   opened,
@@ -49,11 +49,14 @@ export function ModifyAccess({
         title: "text-[#54565B] font-medium text-xl ",
       }}
     >
-      <div className="flex flex-col  justify-between">
-
+      <div className="flex flex-col h-full justify-between">
         <div className="flex flex-col gap-8">
-        <p className="text-[#7C827D] text-sm">Confirm entries forspan
-            <span className=" font-semibold text-sm"> Ayodele Emmanuel Davies</span>
+        <p className="text-[#7C827D] text-sm">
+          Confirm entries for
+          <span className=" font-semibold text-sm">
+            {" "}
+            Ayodele Emmanuel Davies
+          </span>
         </p>
         <div className="flex flex-col ">
           <div className="flex gap-[11px]">
@@ -69,29 +72,23 @@ export function ModifyAccess({
             </span>
           </div>
 
-            {spList.map((item) => (
+          {spList.map((item) => (
+            <div key={item.sp} className=" flex items-center gap-8">
+              <div className=" border-b border-b-[#F5F5F5] flex-1 px-6 py-4">
+                <h2 className="text-sm  text-uacs-neutral-9  font-semibold ">
+                  {item.sp}
+                </h2>
+              </div>
 
-     <div key={item.sp} className=" flex items-center gap-8">
-<div className=" border-b border-b-[#F5F5F5] flex-1 px-6 py-4">
-  <h2 className="text-sm  text-uacs-neutral-9  font-semibold ">
-   {item.sp}
-  </h2>
-</div>
-
-<div className="   flex-1">
-  {item.actionAccess}
-</div>
-     </div>
-
-
-            ))}
-
-        
-
+              <div className="   flex-1">{item.actionAccess}</div>
+            </div>
+          ))}
         </div>
         </div>
-      
-        <Button className="bg-uacs-ared-7 text-white rounded-lg text-sm font-medium hover:bg-red-800 h-10">Submit</Button>
+
+        <Button className="bg-uacs-ared-7 text-white rounded-lg text-sm font-medium hover:bg-red-800 h-10">
+          Submit
+        </Button>
       </div>
     </Modal>
   );

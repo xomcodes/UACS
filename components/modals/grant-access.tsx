@@ -130,6 +130,7 @@ export const GrantAccess = ({
               inner: "gap-[8px] ",
             }}
           >
+            
            { active === 2 ? 'Proceed' : 'Next'}
           </Button>
         </div>

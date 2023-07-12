@@ -1,78 +1,44 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 import { ArrowRight2, FolderAdd, UserCirlceAdd } from "iconsax-react";
 import clsx from "clsx";
-
-const activitiesList = [
-  {
-    img: <FolderAdd size="16" color="#E08100" variant="Bold" />,
-    text: "Updated Rayeem Yusufs Permission for ComX",
-    editor: "Gloria Eromonsele",
-    time: "11m ago",
-    figure: "bg-[#EBFAF3] p-2 rounded-lg",
-  },
-
-  {
-    img: <UserCirlceAdd size="16" color="#1D925D" variant="Outline" />,
-    text: "Created a service provider, WorkBench",
-    editor: "By Goodness Iko-Oji",
-    time: "11m ago",
-    figure: "bg-[#EBFAF3] p-2 rounded-lg",
-  },
-
-  {
-    img: <FolderAdd size="16" color="#E08100" variant="Bold" />,
-    text: "Updated Rayeem Yusufs Permission for ComX",
-    editor: "Gloria Eromonsele",
-    time: "11m ago",
-    figure: "bg-[#FCF3E8] p-2 rounded-lg",
-  },
-
-  {
-    img: <UserCirlceAdd size="16" color="#1D925D" variant="Outline" />,
-    text: "Created a service provider, WorkBench",
-    editor: "By Goodness Iko-Oji",
-    time: "11m ago",
-    figure: "bg-[#EBFAF3] p-2 rounded-lg",
-  },
-
-  {
-    img: <FolderAdd size="16" color="#E08100" variant="Bold" />,
-    text: "Updated Rayeem Yusufs Permission for ComX",
-    editor: "Gloria Eromonsele",
-    time: "11m ago",
-    figure: "bg-[#FCF3E8] p-2 rounded-lg",
-  },
-
-  {
-    img: <UserCirlceAdd size="16" color="#1D925D" variant="Outline" />,
-    text: "Created a service provider, WorkBench",
-    editor: "By Goodness Iko-Oji",
-    time: "11m ago",
-    figure: "bg-[#EBFAF3] p-2 rounded-lg",
-  },
-
-  {
-    img: <FolderAdd size="16" color="#E08100" variant="Bold" />,
-    text: "Updated Rayeem Yusufs Permission for ComX",
-    editor: "Gloria Eromonsele",
-    time: "11m ago",
-    figure: "bg-[#EBFAF3] p-2 rounded-lg",
-  },
-
-  {
-    img: <UserCirlceAdd size="16" color="#1D925D" variant="Outline" />,
-    text: "Created a service provider, WorkBench",
-    editor: "By Goodness Iko-Oji",
-    time: "11m ago",
-    figure: "bg-[#EBFAF3] p-2 rounded-lg",
-  },
-];
+import axios from "axios";
 
 export const DashboardActivities = () => {
+  dayjs.extend(relativeTime)
 
-  
+  const [activity, setActivity] = useState<
+    { activity: "string"; actor_name: "string"; id: number, time:Date }[]
+  >([]);
+
+  // Process of sending a  GET request
+  const getActivities = async () => {
+    const accessToken = JSON.parse(
+      localStorage.getItem("login-user") as string
+    )?.access;
+
+    try {
+      const { data } = await axios({
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}activity_log/`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      setActivity(data.results);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getActivities();
+  }, []);
+
   return (
     <div className="flex flex-col gap-4 p-6 bg-white card-shadow rounded-lg h-[60vh] overflow-auto">
       <div className="flex justify-between p-6 items-center">
@@ -86,7 +52,7 @@ export const DashboardActivities = () => {
         </div>
 
         <div className="flex gap-2">
-          <Link href="/activities">
+          <Link href="/logs/activities">
             <h3 className="text-xs font-medium text-uacs-ared-7 cursor-pointer ">
               View all activities
             </h3>
@@ -96,25 +62,34 @@ export const DashboardActivities = () => {
         </div>
       </div>
       <div className="flex flex-col overflow-auto scroll-bar-hidden gap-4">
-        {activitiesList.map((item) => (
-          <div key={item.time} className=" flex justify-between items-center py-4 border-b">
+        {activity.map((item, index) => (
+          <div
+            key={item.id}
+            className=" flex justify-between items-center py-4 border-b"
+          >
             <div className="flex gap-2 items-center ">
-              <figure className={clsx(item.figure)}>{item.img}</figure>
+              {index % 2 === 0 ? (
+                <figure className={clsx("bg-[#FCF3E8] p-2 rounded-lg")}>
+                  <FolderAdd size="16" color="#E08100" variant="Bold" />
+                </figure>
+              ) : (
+                <figure className={clsx("bg-[#EBFAF3] p-2 rounded-lg")}>
+                  <UserCirlceAdd size="16" color="#1D925D" variant="Outline" />
+                </figure>
+              )}
               <div className="flex flex-col gap-2">
                 <h3 className="text-xs font-semibold text-uacs-eneutral-11">
-                  {item.text}
+                  {item.activity}
                 </h3>
                 <p className="text-uacs-eneutral-8 font-normal text-xs">
                   By{" "}
                   <Link href="" className=" underline decoration-inherit ">
-                    {item.editor}
+                    {item.actor_name}
                   </Link>
                 </p>
               </div>
             </div>
-            <p className="text-xs font-medium text-uacs-eneutral-7">
-              {item.time}
-            </p>
+          <p className="text-xs font-medium text-uacs-eneutral-7">{dayjs(item.time).fromNow()}</p>
           </div>
         ))}
       </div>

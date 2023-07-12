@@ -12,6 +12,38 @@ import { AddMember } from "@/modals";
 
 export const SpOverviewEmpty = () => {
   const [opened, setOpened] = useState(false);
+  const elements = [
+    {
+      name: "Ayodele Davis ",
+      emailAddress: "@devis@gmail.com",
+      squad: " Innovation Lab",
+      tribe: "Innovation and Technology",
+      status: true,
+    },
+    {
+      name: "Ayodele Davis ",
+      emailAddress: "@devis@gmail.com",
+      squad: " Innovation Lab",
+      tribe: "Innovation and Technology",
+      status: false,
+    },
+
+    {
+      name: "Ayodele Davis ",
+      emailAddress: "@devis@gmail.com",
+      squad: " Innovation Lab",
+      tribe: "Innovation and Technology",
+      status: true,
+    },
+
+    {
+      name: "Ayodele Davis ",
+      emailAddress: "@devis@gmail.com",
+      squad: " Innovation Lab",
+      tribe: "Innovation and Technology",
+      status: false,
+    },
+  ];
   return (
     <div className="flex flex-col gap-10 flex-1">
       <section className="px-[clamp(0.75rem,1.6vw,1.5rem)] py-[30px] flex flex-col gap-[13px]">
@@ -111,16 +143,18 @@ export const SpOverviewEmpty = () => {
         </div>
       </section>
 
-      <div className="flex justify-center items-center flex-1">
-        <div>
-          {/* <SpOverviewTable/> */}
-
-          <EmptyState
-            onClick={() => setOpened(true)}
-            btnText="Add a Staff"
-            className="!bg-transparent "
-          />
-        </div>
+      <div>
+        {elements?.length ? (
+          <SpOverviewTable elements={elements} />
+        ) : (
+          <div className="flex justify-center items-center flex-1">
+            <EmptyState
+              onClick={() => setOpened(true)}
+              btnText="Add a Staff"
+              className="!bg-transparent "
+            />
+          </div>
+        )}
       </div>
       <AddMember opened={opened} setOpened={setOpened} />
     </div>

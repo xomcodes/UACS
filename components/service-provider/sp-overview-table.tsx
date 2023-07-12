@@ -2,55 +2,8 @@ import { Switch, Table, clsx } from "@mantine/core";
 import { ArrowDown, ArrowDown2, ArrowUp } from "iconsax-react";
 import { InactiveDot } from "./inactive-dot";
 
-export function SpOverviewTable() {
-  const elements = [
-    {
-      name: "Ayodele Davis ",
-      emailAddress: "@devis@gmail.com",
-      squad: " Innovation Lab",
-      tribe: "Innovation and Technology",
-      status: <span className="flex gap-1 px-2 rounded-lg bg-[#E7F9F0] items-center max-w-fit">
-      <InactiveDot  color="#0DBF66"/>
-      <p className="text-[#076D3A] text-sm font-normal">Active</p>
-    </span>,
-      accesscontrol: ["Modify", "icon", "Reset Account"],
-    },
-    {
-      name: "Ayodele Davis ",
-      emailAddress: "@devis@gmail.com",
-      squad: " Innovation Lab",
-      tribe: "Innovation and Technology",
-      status: <span className="flex gap-1 px-2 rounded-lg bg-[#FDEEEE] items-center max-w-fit">
-      <InactiveDot  color="#ED5556"/>
-      <p className="text-[#873031] text-sm font-normal">Inactive</p>
-    </span>,
-      accesscontrol: ["Modify", "icon", "Reset Account"],
-    },
-
-    {
-      name: "Ayodele Davis ",
-      emailAddress: "@devis@gmail.com",
-      squad: " Innovation Lab",
-      tribe: "Innovation and Technology",
-      status: <span className="flex gap-1 px-2 rounded-lg bg-[#E7F9F0] items-center max-w-fit">
-      <InactiveDot  color="#0DBF66"/>
-      <p className="text-[#076D3A] text-sm font-normal">Active</p>
-    </span>,
-      accesscontrol: ["Modify", "icon", "Reset Account"],
-    },
-
-    {
-      name: "Ayodele Davis ",
-      emailAddress: "@devis@gmail.com",
-      squad: " Innovation Lab",
-      tribe: "Innovation and Technology",
-      status: <span className="flex gap-1 px-2 rounded-lg bg-[#FDEEEE] items-center max-w-fit">
-      <InactiveDot  color="#ED5556"/>
-      <p className="text-[#873031] text-sm font-normal">Inactive</p>
-    </span>,
-      accesscontrol: ["Modify", "icon", "Reset Account"],
-    },
-  ];
+export function SpOverviewTable({elements}: {elements: any[]}) {
+  
 
   const rows = elements.map((element) => (
     <tr key={element.name} className=" ">
@@ -58,9 +11,27 @@ export function SpOverviewTable() {
       <td className="td-name">{element.emailAddress}</td>
       <td className="td-name ">{element.squad}</td>
       <td className="td-name  ">{element.tribe}</td>
-      <td className="td-name  ">{element.status}</td>
+      <td className="td-name  ">
+        {element.status ? (
+          <span className="flex gap-1 px-2 rounded-lg bg-[#E7F9F0] items-center max-w-fit">
+            <InactiveDot color="#0DBF66" />
+            <p className="text-[#076D3A] text-sm font-normal">Active</p>
+          </span>
+        ) : (
+          <span className="flex gap-1 px-2 rounded-lg bg-[#FDEEEE] items-center max-w-fit">
+            <InactiveDot color="#ED5556" />
+            <p className="text-[#873031] text-sm font-normal">Inactive</p>
+          </span>
+        )}
+      </td>
       <td className="td-name">
-       <Switch/>
+        <Switch />
+      </td>
+      <td className="td-name">
+        <span className="flex gap-2">
+          <span className="flex items-center gap-1">Modify<ArrowDown2 /></span>
+          <span>Reset Account</span>
+        </span>
       </td>
     </tr>
   ));
@@ -89,7 +60,7 @@ export function SpOverviewTable() {
           </th>
 
           <th className="th-sp ">
-          <span className="flex gap-2 items-center">
+            <span className="flex gap-2 items-center">
               <span>Email Address</span>
               <span className="flex">
                 <ArrowUp size="12" color="#5D5B60" variant="Outline" />
@@ -148,9 +119,7 @@ export function SpOverviewTable() {
             </span>
           </th>
 
-          <th className=" th-sp">
-           Access Control
-          </th>
+          <th className=" th-sp">Access Control</th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>
@@ -158,5 +127,4 @@ export function SpOverviewTable() {
   );
 }
 
-
-// text-[#514747] text-sm font-normal 
+// text-[#514747] text-sm font-normal

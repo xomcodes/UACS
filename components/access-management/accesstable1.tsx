@@ -1,7 +1,16 @@
-import { Table, clsx } from "@mantine/core";
+import { ModifyAccess } from "@/modals/modify-access";
+import { ResetAccount } from "@/modals/reset-account";
+import { Active } from "@/pop-ups";
+import { ModifyRevoke } from "@/pop-ups/modify-revoke";
+import { Popover, Table, clsx } from "@mantine/core";
 import { ArrowDown, ArrowDown2, ArrowUp } from "iconsax-react";
+import {useState} from 'react'
 
 export function AccessTable1() {
+  
+  const [opened, setOpened] = useState(false);
+  const [accessOpened, setAccessOpened] = useState(false);
+  // const [opened, setOpened] = useState(false);
   const elements = [
     {
       name: "Raheem Yusuf ",
@@ -44,9 +53,16 @@ export function AccessTable1() {
       <td className="td-name">
         <span className="flex items-center gap-2">
          
-          <span className=" underline !text-[#E1891C] text-sm font-normal cursor-pointer">Modify</span>
-         <ArrowDown2 size='18' color='#E1891C' />
-          <span className="!text-[#ED5556] underline text-sm font-normal cursor-pointer">Reset Account</span>
+          
+
+          
+          {/* <ArrowDown2 size='18' color='#E1891C' /> */}
+          {/* A pop-up(modify/Revoke) */}
+          <ModifyRevoke setOpened={setAccessOpened}/>
+          {/* <Active/> */}
+          
+        
+          <span onClick={() => setOpened(true)}   className="!text-[#ED5556] underline text-sm font-normal cursor-pointer">Reset Account</span>
         </span>
       </td>
     </tr>
@@ -98,6 +114,11 @@ export function AccessTable1() {
         </tr>
       </thead>
       <tbody>{rows}</tbody>
+      {/* On Click on Modify on this day leads to Modify access modal */}
+      {/* <ModifyAccess opened={opened} setOpened={setOpened}/> */}
+      <ResetAccount opened={opened} setOpened={setOpened}/>
+    <ModifyAccess opened={accessOpened} setOpened={setAccessOpened}/>
+
     </Table>
   );
 }

@@ -1,88 +1,48 @@
+import { Dots } from "@/service-provider";
+import { usePortal } from "@ibnlanre/portal";
 import axios from "axios";
 import { ArrowRight2 } from "iconsax-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, {useState, useEffect } from "react";
 
-const providerArr = [
-  {
-    provider: "ComX",
-    img: "/dashboard/dots-horizontal.png",
-    text: "https://www.comx.afexnigeria.com",
-  },
 
-  {
-    provider: "ATS Admin",
-    img: "/dashboard/dots-horizontal.png",
-    text: "https://www.admin.afexats.com",
-  },
 
-  {
-    provider: "Talent Management",
-    img: "/dashboard/dots-horizontal.png",
-    text: "https://www.talentmanagement.afexnigeria.com",
-  },
-
-  {
-    provider: "HR Portal",
-    img: "/dashboard/dots-horizontal.png",
-    text: "hhttps://www.hr.afexnigeria.com",
-  },
-
-  {
-    provider: "WorkBench",
-    img: "/dashboard/dots-horizontal.png",
-    text: "https://www.comx.afexnigeria.com",
-  },
-
-  {
-    provider: "WorkBench",
-    img: "/dashboard/dots-horizontal.png",
-    text: "https://www.comx.afexnigeria.com",
-  },
-
-  {
-    provider: "WorkBench",
-    img: "/dashboard/dots-horizontal.png",
-    text: "https://www.comx.afexnigeria.com",
-  },
-
-  {
-    provider: "WorkBench",
-    img: "/dashboard/dots-horizontal.png",
-    text: "https://www.comx.afexnigeria.com",
-  },
-  {
-    provider: "WorkBench",
-    img: "/dashboard/dots-horizontal.png",
-    text: "https://www.comx.afexnigeria.com",
-  },
-
-  {
-    provider: "WorkBench",
-    img: "/dashboard/dots-horizontal.png",
-    text: "https://www.comx.afexnigeria.com",
-  },
-];
-
+  // A preview of my list of Service providers on the dashboard
 
 export const ServiceProvider = () => {
+  const [sp, setSp] = useState<{name:string,url:string}[]>([])
+  const [totalSp, setTotalSp] = usePortal('total-sp',0 )
 
+  // Created this function as to not pass in async function to useEffect directly
   const getServiceProviders = async () => {
+    // Got access tokon from my local storage at this point 
+    // The tokon comes as json, had to make it a javascript object, thus i used json.parse to wrap the token
+    const accessToken = JSON.parse(
+      localStorage.getItem("login-user") as string
+    )?.access;
     try {
-      const { data } = await axios(
-        `${process.env.NEXT_PUBLIC_BASE_URL}service_providers/`
-      );
-      console.log(data);
+      // Getting my data from backend with axios at this point
+      const { data } = await axios({
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}service_providers/all/`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      // Setting my state to the data i received
+    //  console.log(data)
+      setSp(data.results);
+      setTotalSp(data.count)
+
     } catch (error) {
       console.log(error);
     }
   };
-  
-  useEffect(() => {
-    getServiceProviders()
-  }, []);
 
+  useEffect(() => {
+    getServiceProviders();
+  }, []);
 
   return (
     <section className="bg-white py-8 px-4 flex flex-col gap-4 overflow-auto rounded-lg card-shadow">
@@ -105,25 +65,23 @@ export const ServiceProvider = () => {
       </div>
 
       <div className="scroll-bar-hidden overflow-auto flex flex-col gap-4">
-        {providerArr.map((item) => (
+        {sp.map((item) => (
           <div
-            key={item.provider}
+            key={item.name}
             className="border-b border-b-[#DADADD] px-4 py-3"
           >
             <div className="flex flex-col gap-1">
               <div className="flex justify-between ">
                 <h2 className="text-sm text-uacs-eneutral-11 font-semibold">
-                  {item.provider}
+                  {item.name}
                 </h2>
-                <Image
-                  src={item.img}
-                  width={24}
-                  height={24}
-                  alt={item.provider}
-                />
+                <span className=" rotate-90">
+                <Dots  />
+                </span>
+              
               </div>
               <p className="text-xs font-normal text-uacs-eneutral-8 ">
-                https://www.comx.afexnigeria.com
+               {item.url}
               </p>
             </div>
           </div>

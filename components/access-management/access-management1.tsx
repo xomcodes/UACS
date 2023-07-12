@@ -43,7 +43,7 @@ export const AccessManagement1 = () => {
               } className="bg-uacs-ared-7 rounded-lg hover:bg-red-800 h-10 w-[162px] "
             > Grant Access</Button>
           </div>
-          <ModifyAccess opened={opened} setOpened={setOpened}/>
+          {/* <ModifyAccess opened={opened} setOpened={setOpened}/> */}
         </div>
       </div>
 

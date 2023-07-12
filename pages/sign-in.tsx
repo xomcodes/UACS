@@ -75,7 +75,7 @@ function SignIn() {
         <div className="flex flex-1 items-center  ">
           <div className="flex items-center max-[600px]:justify-center w-full justify-between gap-10">
             <div className=" flex flex-col max-[600px]:hidden gap-10 items-center">
-              {/* <div className=" bg-cover bg-[top_center] bg-no-repeat h-screen w-full" style={{backgroundImage: "url('/sign-in/secure-login.png')"}}></div> */}
+
               <Image
                 src="/sign-in/secure-login.png"
                 width={309}

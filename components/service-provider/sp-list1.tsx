@@ -1,17 +1,14 @@
-import { FilterInput } from "@/activities/filter-input";
-import { BtnwithIcon } from "@/shared";
-import React, {useState} from "react";
-import { ComXRounded } from "./comX-rounded";
-import Image from "next/image";
+import React, { useState } from "react";
 import Link from "next/link";
 import { Button, Modal, TextInput } from "@mantine/core";
 import { SearchNormal1 } from "iconsax-react";
 import { FilterIcon } from "@/activities/filter-icon";
 import { CreateSp } from "@/modals";
-
+import Image from "next/image";
+import { Dots } from "./dots";
 
 export const SpList1 = () => {
-  const [opened, setOpened] = useState(false)
+  const [opened, setOpened] = useState(false);
   return (
     <div className="pt-8 px-[clamp(0.75rem,1.6vw,1.5rem)] flex flex-col gap-10">
       <div className="flex flex-col gap-10">
@@ -29,30 +26,25 @@ export const SpList1 = () => {
             />
           </div> */}
 
-          
-
-<div className="flex gap-4">
+          <div className="flex gap-4">
             <div className="flex ">
-                <TextInput 
-                  icon={
-                    <SearchNormal1
-                      size="16"
-                      color="#C1C2C6"
-                      variant="Outline"
-                    />
-                  }
-                  classNames={{
-                    input:
-                      "bg-white border-none h-10 rounded-none rounded-tl-lg rounded-bl-lg placeholder:text-xs w-[clamp(132px,19vw,276px)] placeholder:font-medium text-uacs-eneutral-6  ",
-                  }}
-                  placeholder="Service Provider"
-                />
+              <TextInput
+                icon={
+                  <SearchNormal1 size="16" color="#C1C2C6" variant="Outline" />
+                }
+                classNames={{
+                  input:
+                    "bg-white border-none h-10 rounded-none rounded-tl-lg rounded-bl-lg placeholder:text-xs w-[clamp(132px,19vw,276px)] placeholder:font-medium text-uacs-eneutral-6  ",
+                }}
+                placeholder="Service Provider"
+              />
 
               <div className="px-2 bg-[#DADADD] flex rounded-tr-lg items-center  rounded-br-lg ">
                 <FilterIcon />
               </div>
             </div>
-            <Button onClick={() => setOpened(true)}
+            <Button
+              onClick={() => setOpened(true)}
               leftIcon={
                 <Image
                   src="/dashboard/plus.png"
@@ -63,34 +55,22 @@ export const SpList1 = () => {
               }
               className="bg-uacs-ared-7 text-sm rounded-lg hover:bg-red-800 h-10 w-fit"
               classNames={{
-                inner: "gap-[10px]"
+                inner: "gap-[10px]",
               }}
             >
               New Service Provider
             </Button>
           </div>
-
         </div>
-        <CreateSp opened={opened} setOpened={setOpened}/>
+        <CreateSp opened={opened} setOpened={setOpened} />
 
         {/* Sp Cards */}
-        <div className=" bg-white rounded-[20px] border-[0.3px]  border-[#EBEBEB]  gap-20 p-5 sp-card-shadow flex {">
-          <div className="flex gap-8">
-            {/* logo */}
-            <div className="gap-8">
-              <div className="flex  relative max-w-max">
-                <Image
-                  src="/comx-round.svg"
-                  width="80"
-                  height="80"
-                  alt="comx"
-                />
-                <div className=" border border-uacs-light-03 bg-uacs-success rounded-full h-4 w-4 absolute left-[3.7rem] bottom-3 "></div>
-              </div>
-            </div>
+        <div className=" grid grid-cols-[1fr,300px] justify-center bg-white rounded-[20px] border-[0.3px]  border-[#EBEBEB]  gap-20 p-5 sp-card-shadow ">
+          {/* left */}
+          <div className="grid grid-cols-[60px,1fr] gap-8 items-center">
+            <Image src="/comx-round.svg" width={80} height={80} alt="comX" />
 
-            {/* Card list */}
-            <div className="flex gap-12 items-center">
+            <div className=" grid grid-cols-[repeat(4,1fr)] gap-12">
               <div className="flex flex-col gap-[11px]">
                 <p className=" text-uacs-primary-70 text-xs font-normal ">
                   Service Provider
@@ -130,16 +110,27 @@ export const SpList1 = () => {
             </div>
           </div>
 
-{/* image list */}
-             <div>
-                <div className="border-2 border-white bg-[#FFC700] h-9 w-9 py-2 flex justify-center rounded-full items-center">
-                    <h2 className="text-white text-sm font-semibold"> A</h2>
+          {/* right */}
+          <div className="flex flex-col gap-1 justify-end ">
+            <p className="text-uacs-primary-70 text-xs font-normal">Staff</p>
+
+            <div className="flex  gap-6 justify-end  " >
+              <div className="flex">
+                
+                <div className="border-2 border-white bg-[#FFC700] h-9 w-9 py-[9.5px] px-[12.6px] flex justify-center rounded-full items-center">
+                  <h2 className="text-white text-sm font-semibold"> A</h2>
                 </div>
+                <div className="border-2 border-white bg-[#FFC700] h-9 w-9 py-[9.5px] px-[12.6px] flex justify-center rounded-full items-center">
+                  <h2 className="text-white text-sm font-semibold"> A</h2>
+                </div>
+              </div>
 
-             </div>
-
+              <Dots />
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
+
