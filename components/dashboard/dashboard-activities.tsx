@@ -38,6 +38,7 @@ export const DashboardActivities = () => {
   useEffect(() => {
     getActivities();
   }, []);
+  
 
   return (
     <div className="flex flex-col gap-4 p-6 bg-white card-shadow rounded-lg h-[60vh] overflow-auto">
