@@ -10,11 +10,13 @@ import { GrantAccess } from "@/modals";
 export const EmptyState = ({
   className,
   btnText,
-  onClick
+  onClick,
+  getStaff
 }: {
   className?: string;
   btnText: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>
+  getStaff?: any
 }) => {
 
   const [opened, setOpened] = useState(false)
@@ -45,7 +47,7 @@ export const EmptyState = ({
         <Button onClick={onClick} className="bg-uacs-ared-7 rounded-lg hover:bg-red-800 h-[46px]  text-white text-sm  w-fit ">
           {btnText}
         </Button>
-        <GrantAccess opened={opened} setOpened={setOpened}/>
+        <GrantAccess getStaff={getStaff} opened={opened} setOpened={setOpened}/>
       </div>
     </div>
   );

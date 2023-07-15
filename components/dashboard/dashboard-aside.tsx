@@ -123,7 +123,7 @@ export const DashboardAside = () => {
               !item.children ? (
                 <Link href={item.link} key={item.name}>
                   <div
-                    key={item.name}
+                    
                     className={clsx(
                       pathname.includes(item.link)
                         ? "text-uacs-ared-7"
@@ -139,6 +139,7 @@ export const DashboardAside = () => {
                 </Link>
               ) : (
                 <div
+                key={item.name}
                   className={clsx(
                     pathname.includes("logs")
                       ? "text-uacs-ared-7"
@@ -155,7 +156,7 @@ export const DashboardAside = () => {
 
                   <div className="flex flex-col gap-4 border-l  border-l-[#DADADD] ml-6">
                     {item.children.map((ele) => (
-                      <Link href={ele.link} className="  pl-3">
+                      <Link key={ele.link} href={ele.link} className="  pl-3">
                         <h3
                           className={clsx(
                             pathname.includes(ele.link)

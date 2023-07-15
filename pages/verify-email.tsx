@@ -75,7 +75,7 @@ function VerifyEmail() {
               </Button>
 
               <p className="text-[#696B6F] text-xs font-normal text-right">
-                Can't find 6-digit pin?{" "}
+                Can&apos;t find 6-digit pin?{" "}
                 <span className="text-[#C81107] text-xs font-semibold cursor-pointer">
                   {" "}
                   Resend Pin

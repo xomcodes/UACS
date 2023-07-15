@@ -5,6 +5,7 @@ import { Button, LoadingOverlay } from "@mantine/core";
 import Image from "next/image";
 import { GrantAccess, ModifyAccess } from "@/modals";
 import axios from "axios";
+import { EmptyState } from "./empty-state";
 
 export interface IAccessManager {
   first_name: string;
@@ -91,8 +92,18 @@ export const AccessManagement1 = () => {
           />
         </div>
       </div>
-
-      <AccessTable1 accessManager={accessManager} />
+      {accessManager?.length ? (
+        <AccessTable1 accessManager={accessManager} />
+      ) : (
+        <section className="px-[clamp(0.75rem,1.6vw,1.5rem)] py-[30px] flex-1">
+          <EmptyState
+            getStaff={getStaff}
+            onClick={() => setOpened(true)}
+            btnText="Grant Access"
+            className="bg-white "
+          />
+        </section>
+      )}
       <LoadingOverlay visible={loading} />
     </div>
   );
