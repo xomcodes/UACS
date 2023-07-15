@@ -1,48 +1,20 @@
 import { Dots } from "@/service-provider";
 import { usePortal } from "@ibnlanre/portal";
+import { LoadingOverlay } from "@mantine/core";
 import axios from "axios";
 import { ArrowRight2 } from "iconsax-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, {useState, useEffect } from "react";
+import useDashboardSp from "../../hooks/use-dashboard-sp";
 
 
 
   // A preview of my list of Service providers on the dashboard
 
 export const ServiceProvider = () => {
-  const [sp, setSp] = useState<{name:string,url:string}[]>([])
-  const [totalSp, setTotalSp] = usePortal('total-sp',0 )
 
-  // Created this function as to not pass in async function to useEffect directly
-  const getServiceProviders = async () => {
-    // Got access tokon from my local storage at this point 
-    // The tokon comes as json, had to make it a javascript object, thus i used json.parse to wrap the token
-    const accessToken = JSON.parse(
-      localStorage.getItem("login-user") as string
-    )?.access;
-    try {
-      // Getting my data from backend with axios at this point
-      const { data } = await axios({
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}service_providers/all/`,
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      // Setting my state to the data i received
-    //  console.log(data)
-      setSp(data.results);
-      setTotalSp(data.count)
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getServiceProviders();
-  }, []);
+ const {sp, loading} = useDashboardSp()
 
   return (
     <section className="bg-white py-8 px-4 flex flex-col gap-4 overflow-auto rounded-lg card-shadow">
@@ -65,7 +37,7 @@ export const ServiceProvider = () => {
       </div>
 
       <div className="scroll-bar-hidden overflow-auto flex flex-col gap-4">
-        {sp.map((item) => (
+        {sp?.map((item) => (
           <div
             key={item.name}
             className="border-b border-b-[#DADADD] px-4 py-3"
@@ -87,6 +59,7 @@ export const ServiceProvider = () => {
           </div>
         ))}
       </div>
+      <LoadingOverlay visible={loading}/>
     </section>
   );
 };

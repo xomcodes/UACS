@@ -2,7 +2,7 @@ import React from 'react'
 
 export const FilesIcon = () => {
   return (
-    <svg className='absolute w-[7w] max-w-[86px] bottom-[40px] left-0' width="106" height="106" viewBox="0 0 106 106" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="106" height="106" viewBox="0 0 106 106" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="files">
     <path id="Vector" d="M53.2522 105.247C82.2859 105.247 105.822 81.711 105.822 52.6773C105.822 23.6436 82.2859 0.107178 53.2522 0.107178C24.2186 0.107178 0.682129 23.6436 0.682129 52.6773C0.682129 81.711 24.2186 105.247 53.2522 105.247Z" fill="white"/>
     <path id="Vector_2" opacity="0.1" d="M53.2522 105.247C82.2859 105.247 105.822 81.711 105.822 52.6773C105.822 23.6436 82.2859 0.107178 53.2522 0.107178C24.2186 0.107178 0.682129 23.6436 0.682129 52.6773C0.682129 81.711 24.2186 105.247 53.2522 105.247Z" fill="#E64D45"/>

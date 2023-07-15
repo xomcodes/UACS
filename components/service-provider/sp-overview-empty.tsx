@@ -1,7 +1,7 @@
 import { Button } from "@/shared";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { InactiveDot } from "./inactive-dot";
 import AccessManagement from "../../pages/access-management";
 import { EmptyState } from "@/access-management";
@@ -9,47 +9,23 @@ import { Copy, Edit2 } from "iconsax-react";
 import { Modal, Switch } from "@mantine/core";
 import { SpOverviewTable } from "./sp-overview-table";
 import { AddMember } from "@/modals";
+import useSpDetails from "../../hooks/use-sp-details";
 
 export const SpOverviewEmpty = () => {
   const [opened, setOpened] = useState(false);
-  const elements = [
-    {
-      name: "Ayodele Davis ",
-      emailAddress: "@devis@gmail.com",
-      squad: " Innovation Lab",
-      tribe: "Innovation and Technology",
-      status: true,
-    },
-    {
-      name: "Ayodele Davis ",
-      emailAddress: "@devis@gmail.com",
-      squad: " Innovation Lab",
-      tribe: "Innovation and Technology",
-      status: false,
-    },
+  const { spDetails, getSp } = useSpDetails();
 
-    {
-      name: "Ayodele Davis ",
-      emailAddress: "@devis@gmail.com",
-      squad: " Innovation Lab",
-      tribe: "Innovation and Technology",
-      status: true,
-    },
-
-    {
-      name: "Ayodele Davis ",
-      emailAddress: "@devis@gmail.com",
-      squad: " Innovation Lab",
-      tribe: "Innovation and Technology",
-      status: false,
-    },
-  ];
   return (
     <div className="flex flex-col gap-10 flex-1">
       <section className="px-[clamp(0.75rem,1.6vw,1.5rem)] py-[30px] flex flex-col gap-[13px]">
         <div className="bg-white justify-center items-center py-8 rounded-lg grid  grid-cols-[auto,1fr] gap-8 card-shadow px-6">
           <div className="border-2 border-[#F5F5F6] flex  justify-center w-[191px] rounded-lg">
-            <Image width={152} height={152} alt="comX" src="/comX.png" />
+            <img
+              width={152}
+              height={152}
+              alt="comX"
+              src={spDetails?.test_picture_url || ""}
+            />
           </div>
 
           <div className="grid grid-cols-[repeat(4,1fr)] gap-10">
@@ -59,7 +35,7 @@ export const SpOverviewEmpty = () => {
                   Name
                 </h4>
                 <p className="text-base font-semibold text-[#535362]">
-                  ComX Admin
+                  {spDetails?.name}
                 </p>
               </div>
 
@@ -68,7 +44,7 @@ export const SpOverviewEmpty = () => {
                   Date created
                 </h2>
                 <p className="text-base font-semibold text-[#535362]">
-                  23 May 2023
+                  {spDetails?.date}
                 </p>
               </div>
             </div>
@@ -82,10 +58,10 @@ export const SpOverviewEmpty = () => {
                   target="_blank"
                   style={{ wordWrap: "break-word" }}
                   className="underline max-w-[200px]"
-                  href="https://www.comxadmin.afexnigeria.com"
+                  href={spDetails?.url}
                 >
                   <p className="text-[#535362] text-base font-semibold ">
-                    https://www.comxadmin.afexnigeria.com
+                    {spDetails?.url}
                   </p>
                 </a>
               </div>
@@ -94,6 +70,9 @@ export const SpOverviewEmpty = () => {
                 <h2 className=" text-uacs-primary-70 font-normal text-base">
                   Status
                 </h2>
+                {/* {
+                  spDetails?.status ? 
+                } */}
                 <div className="flex gap-1 px-2 rounded-lg bg-[#E7F9F0] items-center max-w-fit">
                   <InactiveDot color="#0DBF66" />
                   <p className="text-[#076D3A] text-sm font-normal">Active</p>
@@ -107,7 +86,9 @@ export const SpOverviewEmpty = () => {
                   Staff with permission
                 </h4>
 
-                <p className="text-[#535362] text-base font-semibold ">250</p>
+                <p className="text-[#535362] text-base font-semibold ">
+                  {spDetails?.staffs_with_permission?.length}
+                </p>
               </div>
 
               <div className="flex gap-5">
@@ -129,7 +110,9 @@ export const SpOverviewEmpty = () => {
 
             <div className="flex flex-col gap-10 justify-between">
               <div className="flex-col flex gap-3">
-                <Switch />
+                <Switch
+                // value={spDetails?.status === "Active" ? true : false}
+                />
               </div>
 
               <span className="gap-2   bg-uacs-ared-1 cursor-pointer edit-shadow px-4 py-2 flex justify-center items-center rounded-lg max-w-fit ">
@@ -144,8 +127,8 @@ export const SpOverviewEmpty = () => {
       </section>
 
       <div>
-        {elements?.length ? (
-          <SpOverviewTable elements={elements} />
+        {spDetails?.staffs_with_permission?.length ? (
+          <SpOverviewTable elements={spDetails?.staffs_with_permission} />
         ) : (
           <div className="flex justify-center items-center flex-1">
             <EmptyState
@@ -156,7 +139,11 @@ export const SpOverviewEmpty = () => {
           </div>
         )}
       </div>
-      <AddMember opened={opened} setOpened={setOpened} />
+     {opened ? 
+      <AddMember getSp={getSp} opened={opened} setOpened={setOpened} />
+      : null
+     }
+     
     </div>
   );
 };

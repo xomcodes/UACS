@@ -1,45 +1,54 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
 
 import { Level, People } from "iconsax-react";
 import axios from "axios";
 import { usePortal } from "@ibnlanre/portal";
+import { LoadingOverlay } from "@mantine/core";
+import useAccessCard1 from "../../hooks/use-access-card1";
 
 export const AccessCard1 = () => {
-  const [staffAccess, setStaffAccess] = usePortal<{inactive_sps:number}>('sp-access')
-  const [totalSp, setTotalSp] = usePortal<number>('total-sp')
-// console.log(totalSp)
-
-//  Function to get inactive sp's
-  const getCount = async () => {
-    const accessToken = JSON.parse(
-      localStorage.getItem("login-user") as string
-    )?.access;
-
-    try {
-      const { data } = await axios({
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}count/`,
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-     setStaffAccess(data)
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [totalSp, setTotalSp] = usePortal<number>("total-sp");
+  const [loading, setLoading] = useState(false);
 
 
+  // MOVE BELOW TO A CUSTOM HOOK
+  // const [staffAccess, setStaffAccess] = usePortal<{ inactive_sps: number }>(
+  //   "sp-access"
+  // );
+  // console.log(totalSp)
 
+  //  Function to get inactive sp's
+  // const getCount = async () => {
+  //   const accessToken = JSON.parse(
+  //     localStorage.getItem("login-user") as string
+  //   )?.access;
 
+  //   setLoading(true)
 
+  //   try {
+  //     const { data } = await axios({
+  //       url: `${process.env.NEXT_PUBLIC_BASE_URL}count/`,
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${accessToken}`,
+  //       },
+  //     });
+  //     setLoading(false)
+  //     setStaffAccess(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //     setLoading(false)
+  //   }
+  // };
 
-  useEffect(() => {
-    getCount();
-  }, []);
+  // useEffect(() => {
+  //   getCount();
+  // }, []);
 
+  
+   const {staffAccess} = useAccessCard1()
   return (
     <div
       className="flex-1  rounded-lg p-6    bg-no-repeat bg-[top_center] "
@@ -72,9 +81,12 @@ export const AccessCard1 = () => {
           <p className="font-[Switzer] font-semibold text-sm text-white">
             Inactive SPs:
           </p>
-          <p className="text-white font-semibold text-sm">{staffAccess?.inactive_sps}</p>
+          <p className="text-white font-semibold text-sm">
+            {staffAccess?.inactive_sps}
+          </p>
         </div>
       </div>
+      <LoadingOverlay visible={loading}/>
     </div>
   );
 };

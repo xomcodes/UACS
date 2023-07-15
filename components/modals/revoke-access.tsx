@@ -3,18 +3,18 @@ import React from "react";
 import Image from "next/image";
 
 export const ReVokeAccess = ({
-  opened,
-  setOpened,
+  revokeopened,
+  setRevokeOpened,
 }: {
-  opened: boolean;
-  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+  revokeopened: boolean;
+  setRevokeOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
     <Modal
       centered
       //   size="44vw"
-      opened={opened}
-      onClose={() => setOpened(false)}
+      opened={revokeopened}
+      onClose={() => setRevokeOpened(false)}
       title=""
       classNames={{
         header: "px-6 pb-2",
@@ -35,7 +35,7 @@ export const ReVokeAccess = ({
 
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-2 items-center">
-            <h2 className=" text-uacs-eneutral-9 text-xl font-semibold "> Reset Access?</h2>
+            <h2 className=" text-uacs-eneutral-9 text-xl font-semibold "> Revoke Access?</h2>
             <p className=" text-uacs-eneutral-7 text-sm font-normal text-center">
               You are about to revoke this member’s access. Click the “Revoke
               access” button below if you would like to continue

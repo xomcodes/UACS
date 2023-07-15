@@ -2,7 +2,7 @@ import React from 'react'
 
 export const FingerIcon = () => {
   return (
-    <svg  className='absolute w-[7w] max-w-[86px] bottom-[40px] right-0' width="106" height="106" viewBox="0 0 106 106" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg  width="106" height="106" viewBox="0 0 106 106" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="finger">
     <path id="Vector" d="M53.3169 105.356C82.3506 105.356 105.887 81.8198 105.887 52.7862C105.887 23.7525 82.3506 0.216064 53.3169 0.216064C24.2832 0.216064 0.746796 23.7525 0.746796 52.7862C0.746796 81.8198 24.2832 105.356 53.3169 105.356Z" fill="white"/>
     <path id="Vector_2" opacity="0.1" d="M53.3169 105.356C82.3506 105.356 105.887 81.8198 105.887 52.7862C105.887 23.7525 82.3506 0.216064 53.3169 0.216064C24.2832 0.216064 0.746796 23.7525 0.746796 52.7862C0.746796 81.8198 24.2832 105.356 53.3169 105.356Z" fill="#E64D45"/>

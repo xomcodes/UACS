@@ -1,17 +1,15 @@
-import { Wrapper } from '@/layout'
-import { SpOverviewEmpty } from '@/service-provider'
-import React from 'react'
-import { useRouter } from 'next/router'
+import { Wrapper } from "@/layout";
+import { SpOverviewEmpty } from "@/service-provider";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 function Provider() {
-    const router = useRouter()
   return (
     <Wrapper text="ComX">
-
-      <SpOverviewEmpty/>
-   
-  </Wrapper>
-  )
+      <SpOverviewEmpty />
+    </Wrapper>
+  );
 }
 
-export default Provider
+export default Provider;

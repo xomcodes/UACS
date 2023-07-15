@@ -13,12 +13,20 @@ function AccessManagement() {
   return (
     <>
       <Wrapper text="Access Management">
-        
+
+      {/* accessManager.length ?  */}
+
+      <AccessManagement1/>
+           
       {/* <section className='px-[clamp(0.75rem,1.6vw,1.5rem)] py-[30px] flex-1'>
+        <EmptyState onClick={() => setOpened(true)} btnText='Grant Access' className="bg-white "/>
+        </section>  */}
+{/*         
+      <section className='px-[clamp(0.75rem,1.6vw,1.5rem)] py-[30px] flex-1'>
         <EmptyState onClick={() => setOpened(true)} btnText='Grant Access' className="bg-white "/>
         </section> */}
 
-      <AccessManagement1/>
+      {/* <AccessManagement1/> */}
       </Wrapper>
     </>
   );

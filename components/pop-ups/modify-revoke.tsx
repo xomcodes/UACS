@@ -1,11 +1,11 @@
 import { Popover } from "@mantine/core";
 import { ArrowDown2, CloseCircle, Edit } from "iconsax-react";
 
-export function ModifyRevoke({
-  setOpened,
-}: {
-  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+export function ModifyRevoke(
+  {setOpened,}: {setOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+
+
   return (
     <Popover position="bottom"classNames={{
       dropdown: 'rounded-lg p-0 !w-fit pop-shadow'
@@ -35,7 +35,7 @@ export function ModifyRevoke({
             </h2>
           </div>
 
-          <div className=" flex gap-2 py-2 px-4">
+          <div className=" flex gap-2 py-2 px-4"  onClick={() => setOpened(true)} >
             <CloseCircle size="12" color="#ED5556" variant="Outline" />
             <h2 className="text-[#ED5556] text-xs font-medium">
               Revoke Access

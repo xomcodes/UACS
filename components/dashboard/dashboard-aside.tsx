@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Briefcase, Home3, LogoutCurve, People, UserEdit } from "iconsax-react";
 
 // import { BtnwithIcon } from "@/shared";
@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Button, clsx } from "@mantine/core";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { CreateSp } from "@/modals";
 
 export const DashboardAside = () => {
   const { pathname, push } = useRouter();
@@ -80,9 +81,13 @@ export const DashboardAside = () => {
         />
       ),
       name: "Logout",
-      action: () => { push('/')},
+      action: () => {
+        push("/");
+      },
     },
   ];
+
+  const [opened, setOpened] = useState(false);
   return (
     <aside className=" py-5 px-[clamp(1rem,2.5vw,2.06rem)] flex flex-col gap-14">
       <Link href="/dashboard">
@@ -102,6 +107,7 @@ export const DashboardAside = () => {
           classNames={{
             inner: "gap-[10px]",
           }}
+          onClick={() => setOpened(true)}
         >
           Service Provider
         </Button>
@@ -195,6 +201,7 @@ export const DashboardAside = () => {
           </div>
         </div>
       </div>
+      <CreateSp opened={opened} setOpened={setOpened} />
     </aside>
   );
 };

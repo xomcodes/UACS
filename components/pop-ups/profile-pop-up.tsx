@@ -12,11 +12,11 @@ export const ProfilePopUp = () => {
 
   return (
     <Popover position="bottom" classNames={{
-        dropdown: 'rounded-lg py-2 w-[137px] pop-shadow !left-[100px]'
+        dropdown: 'rounded-lg py-2 w-[137px] pop-shadow  absolute '
 
     }} >
-      <Popover.Target>
-      <ArrowDown2  className='cursor-pointer' color="#8F8E91"  size='18' onClick={() => setOpened(true)}/>
+      <Popover.Target >
+      <ArrowDown2  className='cursor-pointer ' color="#8F8E91"  size='18' onClick={() => setOpened(true)}/>
       </Popover.Target>
       <Popover.Dropdown>
         

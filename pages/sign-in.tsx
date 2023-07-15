@@ -6,6 +6,9 @@ import { Button, Loader, PasswordInput, TextInput } from "@mantine/core";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { usePortal } from "@ibnlanre/portal";
+import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 export interface IAuthUser {
   access: string;
@@ -15,6 +18,8 @@ export interface IAuthUser {
   profile_picture: string
   refresh: string
 }
+
+
 
 function SignIn() {
   const [logedUser, setLogedUser] = useState({ email: "", password: "" });
@@ -30,7 +35,7 @@ function SignIn() {
 
   // function to handle login
   const handleClick = async (e: FormEvent<HTMLFormElement>) => {
-    if (!logedUser.email) return alert("Please enter your Email");
+    // if (!logedUser.email) return alert("Please enter your Details");
     e.preventDefault();
     // set loading state to true before starting login request
     setLoading(true);
@@ -51,22 +56,32 @@ function SignIn() {
       // After a successful login request and I receive a response in the data variable,
       // I am setting my state below to the data i'm receiving and because it's using usePortal.local(),
       // It also saves this data in the localStorage
+      toast.success("Success!!", {
+        theme: 'colored'
+      })
       setAuthUser(data);
       // Then I push to the dashboard page
       push("/dashboard");
       // And I empty my form
       setLogedUser({ email: "", password: "" });
     } catch (error) {
+      setLoading(false)
       // If any error occured in the above process, it is logged to the console at this point
       console.log(error);
+
+      toast.error("Ouch.... Wrong details", {
+        theme: 'colored'
+      })
     }
   };
 
   return (
+    
     <section
       className="bg-cover bg-[top_center] bg-no-repeat h-screen"
       style={{ backgroundImage: "url('/sign-in/bg-sign-in.png')" }}
     >
+      <ToastContainer toastClassName={'CustomToast'}/>
       <div className="mx-auto w-[clamp(600px,90vw,1778px)] max-w-[1199px]  flex flex-col  flex-1 h-full">
         <header className="pt-12">
           <LogoSmall />
@@ -137,10 +152,13 @@ function SignIn() {
                 </div>
 
                 <div className="flex flex-col gap-[30px] justify-between">
-                  <p className=" self-end text-[#C81107] font-semibold text-sm">
+             
+                   <Link href='/forgot-password' className=" self-end text-[#C81107] font-semibold text-sm">
+                
                     Forgot Password?
-                  </p>
-                  <Button
+                 
+                  </Link>
+                  <Button 
                     type="submit"
                     disabled={loading ? true : false}
                     className="bg-uacs-ared-7 hover:bg-red-800 h-[54px] text-sm font-medium text-white  rounded-lg"

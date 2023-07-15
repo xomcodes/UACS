@@ -3,12 +3,12 @@ import { ArrowDown, ArrowDown2, ArrowUp } from "iconsax-react";
 import { InactiveDot } from "./inactive-dot";
 
 export function SpOverviewTable({elements}: {elements: any[]}) {
-  
+  // export function SpOverviewTable({elements}: {elements: {first_name: string,email:string, squad:string, tribe:string, status:boolean, id: number}[]}) {
 
   const rows = elements.map((element) => (
     <tr key={element.name} className=" ">
-      <td className="td-name ">{element.name}</td>
-      <td className="td-name">{element.emailAddress}</td>
+      <td className="td-name ">{element.first_name}</td>
+      <td className="td-name">{element.email}</td>
       <td className="td-name ">{element.squad}</td>
       <td className="td-name  ">{element.tribe}</td>
       <td className="td-name  ">
@@ -27,17 +27,19 @@ export function SpOverviewTable({elements}: {elements: any[]}) {
       <td className="td-name">
         <Switch />
       </td>
-      <td className="td-name">
+      {/* <td className="td-name">
         <span className="flex gap-2">
           <span className="flex items-center gap-1">Modify<ArrowDown2 /></span>
           <span>Reset Account</span>
         </span>
-      </td>
+      </td> */}
     </tr>
   ));
 
   return (
-    <Table
+  <div className="p-7">
+
+<Table
       verticalSpacing="sm"
       horizontalSpacing="xs"
       className="bg-white rounded-lg card-shadow"
@@ -124,6 +126,10 @@ export function SpOverviewTable({elements}: {elements: any[]}) {
       </thead>
       <tbody>{rows}</tbody>
     </Table>
+
+
+
+  </div>
   );
 }
 

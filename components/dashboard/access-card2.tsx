@@ -5,15 +5,19 @@ import { ArrowRightIcon } from './arrow-right-icon'
 import Link from 'next/link'
 import axios from 'axios'
 import { usePortal } from '@ibnlanre/portal'
+import { LoadingOverlay } from '@mantine/core'
 
 
 export const AccessCard2 = () => {
   const [staffAccess, setStaffAccess] = usePortal<{staff_with_access:number} | null>('sp-access',null)
+  const [loading, setLoading] = useState(false)
 
   const getCount = async () => {
     const accessToken = JSON.parse(
       localStorage.getItem("login-user") as string
     )?.access;
+    
+    setLoading(true)
 
     try {
       const { data } = await axios({
@@ -23,14 +27,16 @@ export const AccessCard2 = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       });
+      setLoading(false)
       // console.log(data);
       setStaffAccess(data)
     } catch (error) {
       console.log(error);
+      setLoading(false)
     }
   };
 
-  console.log(staffAccess)
+  // console.log(staffAccess)
 
   useEffect(() => {
     getCount();
@@ -55,6 +61,7 @@ export const AccessCard2 = () => {
             <ArrowRightIcon/>
           </Link>
          </div>
+         <LoadingOverlay visible={loading} />
         </div>
   )
 }

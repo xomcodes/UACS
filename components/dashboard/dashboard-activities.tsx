@@ -11,9 +11,11 @@ export const DashboardActivities = () => {
   dayjs.extend(relativeTime)
 
   const [activity, setActivity] = useState<
-    { activity: "string"; actor_name: "string"; id: number, time:Date }[]
+    { activity: "string"; actor_name: "string"; id: number, time:Date, action_time: Date }[]
   >([]);
 
+
+  
   // Process of sending a  GET request
   const getActivities = async () => {
     const accessToken = JSON.parse(
@@ -29,7 +31,7 @@ export const DashboardActivities = () => {
         },
       });
       setActivity(data.results);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -82,15 +84,18 @@ export const DashboardActivities = () => {
                 <h3 className="text-xs font-semibold text-uacs-eneutral-11">
                   {item.activity}
                 </h3>
+               
                 <p className="text-uacs-eneutral-8 font-normal text-xs">
                   By{" "}
-                  <Link href="" className=" underline decoration-inherit ">
+                  <span className=" underline decoration-inherit ">
                     {item.actor_name}
-                  </Link>
+                  </span>
                 </p>
+             
+              
               </div>
             </div>
-          <p className="text-xs font-medium text-uacs-eneutral-7">{dayjs(item.time).fromNow()}</p>
+          <p className="text-xs font-medium text-uacs-eneutral-7">{dayjs(item.action_time).fromNow()}</p>
           </div>
         ))}
       </div>

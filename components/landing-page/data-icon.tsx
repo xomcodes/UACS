@@ -2,7 +2,7 @@ import React from 'react'
 
 export const DataIcon = () => {
   return (
-    <svg className='absolute w-[7w] max-w-[86px] top-[40px] right-0' width="106" height="106" viewBox="0 0 106 106" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="106" height="106" viewBox="0 0 106 106" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="data">
 <path id="Vector" d="M52.6118 105.15C81.6454 105.15 105.182 81.6132 105.182 52.5795C105.182 23.5458 81.6454 0.00939941 52.6118 0.00939941C23.5781 0.00939941 0.041687 23.5458 0.041687 52.5795C0.041687 81.6132 23.5781 105.15 52.6118 105.15Z" fill="white"/>
 <path id="Vector_2" opacity="0.1" d="M52.6118 105.15C81.6454 105.15 105.182 81.6132 105.182 52.5795C105.182 23.5458 81.6454 0.00939941 52.6118 0.00939941C23.5781 0.00939941 0.041687 23.5458 0.041687 52.5795C0.041687 81.6132 23.5781 105.15 52.6118 105.15Z" fill="#E64D45"/>

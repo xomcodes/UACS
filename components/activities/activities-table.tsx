@@ -1,45 +1,43 @@
-import { Table } from "@mantine/core";
+import { LoadingOverlay, Table } from "@mantine/core";
 import axios from "axios";
 import { ArrowDown, ArrowUp } from "iconsax-react";
 import { useState, useEffect } from "react";
 import dayjs from "dayjs";
-import LocalizedFormat from 'dayjs/plugin/localizedFormat'
+import LocalizedFormat from "dayjs/plugin/localizedFormat";
 
+interface IActivitiesTable {
+  activity: "string";
+  actor_name: "string";
+  date: "string";
+  time: "string";
+  id: number;
+}
 
 export function ActivitiesTable() {
+  dayjs.extend(LocalizedFormat);
 
-  dayjs.extend(LocalizedFormat)
-
-
-  const [activity, setActivity] = useState<
-    {
-      activity: "string";
-      actor_name: "string";
-      date: "string";
-      time: "string";
-      id : number
-    }[]
-  >([]);
-
-
+  const [activity, setActivity] = useState<IActivitiesTable[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const getActivities = async () => {
     const accessToken = JSON.parse(
       localStorage.getItem("login-user") as string
     )?.access;
 
+    setLoading(true);
     try {
       const { data } = await axios({
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}activity_log`,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}activity_log/`,
         method: "GET",
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       });
       setActivity(data.results);
-      // console.log(data)
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -47,13 +45,17 @@ export function ActivitiesTable() {
     getActivities();
   }, []);
 
+  console.log(activity);
+
   const rows = activity.map((element) => (
     <tr key={element.id} className=" ">
       <td className="td-name  ">{element.actor_name}</td>
       <td className="td-name  ">{element.activity}</td>
       <td className="td-name ">{element.date}</td>
       <td className="td-name">{element.time}</td>
-      {/* <td className="td-name">{element.time?  dayjs(element.time).format('h:mm A') : '--'}</td> */}
+      {/* <td className="td-name">
+        {element.time ? dayjs(element.time).format("h:mm A") : "--"}
+      </td> */}
     </tr>
   ));
 
@@ -65,7 +67,7 @@ export function ActivitiesTable() {
           <th className="th-name">Action</th>
           <th className=" th-name flex gap-2 items-center">
             Date
-            <div className="flex">
+            <span className="flex">
               <ArrowUp size="12" color="#5D5B60" variant="Outline" />
               <ArrowDown
                 size="12"
@@ -73,12 +75,13 @@ export function ActivitiesTable() {
                 variant="Outline"
                 className="-ml-1"
               />
-            </div>
+            </span>
           </th>
           <th className="th-name">Time</th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>
+      <LoadingOverlay visible={loading} />
     </Table>
   );
 }

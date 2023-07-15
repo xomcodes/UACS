@@ -5,16 +5,34 @@ import { SearchNormal1 } from "iconsax-react";
 import { FilterIcon } from "@/activities/filter-icon";
 import { CreateSp } from "@/modals";
 import Image from "next/image";
-import { Dots } from "./dots";
+import { Active } from "@/pop-ups";
 
-export const SpList1 = () => {
+export interface IServiceProvider {
+  name: string;
+  website_url: string;
+  staffs_with_permission: { first_name: string }[];
+  date: string;
+  test_picture_url: string;
+  id: number;
+  is_active: boolean;
+  picture: string
+}
+
+export const SpList1 = ({
+  sp,
+  getSp,
+}: {
+  sp: IServiceProvider[];
+  getSp: () => void;
+}) => {
   const [opened, setOpened] = useState(false);
+  
   return (
-    <div className="pt-8 px-[clamp(0.75rem,1.6vw,1.5rem)] flex flex-col gap-10">
-      <div className="flex flex-col gap-10">
+    <div className="pt-8 px-[clamp(0.75rem,1.6vw,1.5rem)] flex flex-col gap-10 overflow-auto">
+      <div className="flex flex-col gap-10 overflow-auto">
         <div className="flex justify-between items-center ">
           <h3 className="text-base font-semibold text-uacs-eneutral-11">
-            Total Service Provider (50)
+            Total Service Provider ({sp?.length})
           </h3>
 
           {/* <div className="flex gap-4">
@@ -62,75 +80,97 @@ export const SpList1 = () => {
             </Button>
           </div>
         </div>
-        <CreateSp opened={opened} setOpened={setOpened} />
+        <CreateSp opened={opened} setOpened={setOpened} getSp={getSp} />
 
-        {/* Sp Cards */}
-        <div className=" grid grid-cols-[1fr,300px] justify-center bg-white rounded-[20px] border-[0.3px]  border-[#EBEBEB]  gap-20 p-5 sp-card-shadow ">
-          {/* left */}
-          <div className="grid grid-cols-[60px,1fr] gap-8 items-center">
-            <Image src="/comx-round.svg" width={80} height={80} alt="comX" />
+        <div className="flex flex-col gap-4 overflow-auto">
+          {sp?.map((item) => (
+            <div
+              key={item.id}
+              className=" grid grid-cols-[1fr,300px] justify-center bg-white rounded-[20px] border-[0.3px]  border-[#EBEBEB]  gap-20 p-5 sp-card-shadow "
+            >
+              {/* left */}
+              <div className="grid grid-cols-[60px,1fr] gap-8 items-center">
+                <img
+                  // src="/comx-round.svg"
+                  src={item.test_picture_url}
+                  width={80}
+                  height={80}
+                  alt="comX"
+                />
 
-            <div className=" grid grid-cols-[repeat(4,1fr)] gap-12">
-              <div className="flex flex-col gap-[11px]">
-                <p className=" text-uacs-primary-70 text-xs font-normal ">
-                  Service Provider
-                </p>
-                <h2 className=" text-uacs-eneutral-8 font-bold text-sm">
-                  ComX Admin
-                </h2>
+                <div className=" grid grid-cols-[repeat(4,1fr)] gap-12">
+                  <div className="flex flex-col gap-[11px] ">
+                    <p className=" text-uacs-primary-70 text-xs font-normal ">
+                      Service Provider
+                    </p>
+                    <h2 className=" text-uacs-eneutral-8 font-bold text-sm  w-[130px] ">
+                      {item.name}
+                    </h2>
+                  </div>
+
+                  <div className="flex flex-col gap-[11px] ">
+                    <p className=" text-uacs-primary-70 text-xs font-normal ">
+                      URL
+                    </p>
+                    <Link href="www.comx.afexnigeria.com">
+                      {" "}
+                      <h2
+                        className=" text-uacs-eneutral-8 font-bold text-sm w-[160px] "
+                        style={{ wordBreak: "break-word" }}
+                      >
+                        {item.website_url}
+                      </h2>
+                    </Link>
+                  </div>
+
+                  <div className="flex flex-col gap-[11px]">
+                    <p className=" text-uacs-primary-70 text-xs font-normal ">
+                      Members with Permission
+                    </p>
+                    <h2 className=" text-uacs-eneutral-8 font-bold text-sm">
+                      {item.staffs_with_permission.length}
+                    </h2>
+                  </div>
+
+                  <div className="flex flex-col gap-[11px]">
+                    <p className=" text-uacs-primary-70 text-xs font-normal ">
+                      Date Created
+                    </p>
+                    <h2 className=" text-uacs-eneutral-8 font-bold text-sm">
+                      {item.date}
+                    </h2>
+                  </div>
+                </div>
               </div>
 
-              <div className="flex flex-col gap-[11px]">
-                <p className=" text-uacs-primary-70 text-xs font-normal ">
-                  URL
+              {/* right */}
+              <div className="flex flex-col gap-1 justify-end relative">
+                <p className="text-uacs-primary-70 text-xs font-normal">
+                  Staff
                 </p>
-                <Link href="www.comx.afexnigeria.com">
-                  {" "}
-                  <h2 className=" text-uacs-eneutral-8 font-bold text-sm">
-                    ComX Admin
-                  </h2>
-                </Link>
-              </div>
 
-              <div className="flex flex-col gap-[11px]">
-                <p className=" text-uacs-primary-70 text-xs font-normal ">
-                  Members with Permission
-                </p>
-                <h2 className=" text-uacs-eneutral-8 font-bold text-sm">420</h2>
-              </div>
+                <div className="flex  gap-6 justify-end  ">
+                  <div className="flex">
+                    {item?.staffs_with_permission?.map((item, id) => (
+                      <div
+                        key={id}
+                        className="border-2 ml-[-10px] border-white bg-[#FFC700] h-9 w-9 py-[9.5px] px-[12.6px] flex justify-center rounded-full items-center"
+                      >
+                        <h2 className="text-white text-sm font-semibold">
+                          {item?.first_name?.[0]}
+                        </h2>
+                      </div>
+                    ))}
+                  </div>
 
-              <div className="flex flex-col gap-[11px]">
-                <p className=" text-uacs-primary-70 text-xs font-normal ">
-                  Date Created
-                </p>
-                <h2 className=" text-uacs-eneutral-8 font-bold text-sm">
-                  May 04, 2022
-                </h2>
+                  <Active getSp={getSp} sp={item} spStatus={item?.is_active} spID={item?.id} />
+                </div>
               </div>
             </div>
-          </div>
-
-          {/* right */}
-          <div className="flex flex-col gap-1 justify-end ">
-            <p className="text-uacs-primary-70 text-xs font-normal">Staff</p>
-
-            <div className="flex  gap-6 justify-end  " >
-              <div className="flex">
-                
-                <div className="border-2 border-white bg-[#FFC700] h-9 w-9 py-[9.5px] px-[12.6px] flex justify-center rounded-full items-center">
-                  <h2 className="text-white text-sm font-semibold"> A</h2>
-                </div>
-                <div className="border-2 border-white bg-[#FFC700] h-9 w-9 py-[9.5px] px-[12.6px] flex justify-center rounded-full items-center">
-                  <h2 className="text-white text-sm font-semibold"> A</h2>
-                </div>
-              </div>
-
-              <Dots />
-            </div>
-          </div>
+          ))}
         </div>
+        {/* Sp Cards */}
       </div>
     </div>
   );
 };
-

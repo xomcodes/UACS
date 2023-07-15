@@ -49,7 +49,7 @@ export const DashboardHeader = ({
             <div className=" bg-[#C81107] absolute w-2 h-2 rounded-full right-0 top-[2px] left-5 "></div>
           </div>
 
-          <div className="flex relative gap-4 items-center">
+          <div className="flex relative gap-4 items-center ">
             <Image
               src="/profile-img/image 2.svg"
               // src={authUser?.profile_picture}

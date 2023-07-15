@@ -27,7 +27,7 @@ export const EmptyState = ({
       {/* Pasing classname as prop is having issues here. So i am suppoesed to to remove px-[clamp(....so it doesnt issues for othe pages)] bg white  h-85 */}
       <div className="flex flex-col gap-8 items-center">
         <Image
-          src="/access-m-images/nostaff.png"
+          src="/access-m-images/Vector.png"
           width="176"
           height="176"
           alt="nostaff"
@@ -41,10 +41,10 @@ export const EmptyState = ({
           </p>
         </div>
 
-        <Button onClick={() => setOpened(true)} className="bg-uacs-ared-7 rounded-lg hover:bg-red-800 h-[46px]  text-white text-sm  w-fit ">
+        <Button onClick={onClick} className="bg-uacs-ared-7 rounded-lg hover:bg-red-800 h-[46px]  text-white text-sm  w-fit ">
           {btnText}
         </Button>
-        <GrantAccess opened={opened} setOpened={setOpened}/>
+        {/* <GrantAccess opened={opened} setOpened={setOpened}/> */}
       </div>
     </div>
   );
