@@ -9,7 +9,7 @@ import { LoadingOverlay } from "@mantine/core";
 import useAccessCard1 from "../../hooks/use-access-card1";
 
 export const AccessCard1 = () => {
-  const [totalSp, setTotalSp] = usePortal<number>("total-sp");
+  const [totalSp, setTotalSp] = usePortal<number>("total-sp")
   const [loading, setLoading] = useState(false);
 
 
