@@ -13,7 +13,7 @@ function AuthProvider({children}: {children: React.ReactNode}) {
   const unProtectedRoutes = ["/sign-in", "/forgot-password", "/verify-email", "reset-password"]
 
   useEffect(() => {
-    if (router.pathname !== "/" && unProtectedRoutes.includes(router.pathname)) {
+    if (router.pathname !== "/" && !unProtectedRoutes.includes(router.pathname)) {
       localStorage.getItem("login-user")
         ? setIsLoggedIn(true)
         : router.push("/sign-in");
