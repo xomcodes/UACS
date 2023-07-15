@@ -1,11 +1,23 @@
-import { Button, Group, Image, Modal, Stepper, TextInput } from "@mantine/core";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { Close } from "./icons";
+import {
+  Button,
+  Group,
+  Image,
+  Modal,
+  Select,
+  Stepper,
+  TextInput,
+} from "@mantine/core";
 import { ArrowLeft2 } from "iconsax-react";
 
+import { Close } from "./icons";
 import SelectMemebersStaff from "./select-members-staff";
 import { SelectSp } from "./select-sp";
+import useAddMember from "../../hooks/use-add-member";
+import useServiceProviders from "../../hooks/use-service-providers";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const staffList = [
   "Ayodele Emmanuel Davies",
@@ -18,18 +30,77 @@ const staffList = [
   "Ayodeji Balogun",
 ];
 
-export const GrantAccess = ({
-  opened,
-  setOpened,
-}: {
+interface IGrantAccess {
   opened: boolean;
   setOpened: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+  getStaff: () => void;
+}
+
+export const GrantAccess = ({ opened, getStaff, setOpened }: IGrantAccess) => {
   const [active, setActive] = useState(0);
+  const [loading, setLoading] = useState(false);
   const nextStep = () =>
     setActive((current) => (current < 2 ? current + 1 : current));
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current));
+
+  //  Get request
+  const { add } = useAddMember();
+
+  const [selectedMembers, setSelectedMembers] = useState<
+    { name: string; id: number }[]
+  >([]);
+  const [selectedSP, setSelectedSP] = useState<{ name: string; id: number }[]>(
+    []
+  );
+
+  const { sp } = useServiceProviders();
+  const [spList, setSpList] = useState([]);
+
+  useEffect(() => {
+    if (sp) {
+      setSpList(
+        sp?.reduce((acc: any, curr) => {
+          acc.push({
+            label: `${curr.name}`,
+            value: JSON.stringify({ name: curr.name, id: curr.id }),
+          });
+          return acc;
+        }, [])
+      );
+    }
+  }, [sp]);
+
+  const grantAccess = async () => {
+    setLoading(true);
+    const accessToken = JSON.parse(
+      localStorage.getItem("login-user") as string
+    )?.access;
+
+    try {
+      const { data: resData } = await axios({
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}permission_set/`,
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        data: {
+          staff_list: selectedMembers.map((item) => item.id),
+          sp_list: selectedSP.map((item) => item.id),
+        },
+      });
+      toast.success("Adding Staff", {
+        theme: "colored",
+      });
+      getStaff();
+      setOpened(false);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
   return (
     <Modal
       centered
@@ -67,7 +138,7 @@ export const GrantAccess = ({
           >
             <Stepper.Step completedIcon={1}>
               <div className="flex flex-col h-full gap-4 overflow-auto">
-                <TextInput
+                <Select
                   label="Search staff"
                   placeholder="Type Member Name"
                   classNames={{
@@ -76,17 +147,36 @@ export const GrantAccess = ({
                     label: " text-uacs-eneutral-9 text-base font-medium",
                     root: "flex flex-col gap-4 ",
                   }}
+                  data={add}
+                  onChange={(val) => {
+                    const filtered = selectedMembers.filter(
+                      (el) => el.id !== JSON.parse(val as string).id
+                    );
+                    setSelectedMembers([
+                      ...filtered,
+                      JSON.parse(val as string),
+                    ]);
+                  }}
                 />
                 <div className=" flex gap-2 overflow-auto flex-wrap">
-                  {staffList.map((item) => (
+                  {selectedMembers.map((item) => (
                     <span
-                      key={item}
+                      key={item.id}
                       className="flex gap-1 p-2 border-[0.5px]  bg-uacs-primary-0 rounded-lg whitespace-nowrap items-center "
                     >
                       <p className="text-sm font-medium text-[#4A4C58]">
-                        {item}
+                        {item.name}
                       </p>
-                      <Close color="#C1C2C6" size="8" />
+                      <Close
+                        onClick={() => {
+                          const filtered = selectedMembers.filter(
+                            (el: any) => el.id !== item.id
+                          );
+                          setSelectedMembers(filtered);
+                        }}
+                        color="#C1C2C6"
+                        size="8"
+                      />
                     </span>
                   ))}
                 </div>
@@ -95,13 +185,103 @@ export const GrantAccess = ({
               {/* Select sp modal */}
             </Stepper.Step>
             <Stepper.Step completedIcon={2}>
-              <SelectSp/>
+              <div className="flex flex-col h-full gap-4 overflow-auto">
+                <Select
+                  label="Search Provider"
+                  placeholder="Search Service Provider"
+                  classNames={{
+                    input:
+                      "w-full h-12 placeholder:text-sm font-normal text-uacs-eneutral-6",
+                    label: " text-uacs-eneutral-9 text-base font-medium",
+                    root: "flex flex-col gap-4 ",
+                  }}
+                  data={spList}
+                  onChange={(val) => {
+                    const filtered = selectedSP.filter(
+                      (el: any) => el.id !== JSON.parse(val as string).id
+                    );
+                    setSelectedSP([...filtered, JSON.parse(val as string)]);
+                  }}
+                />
+                <div className=" flex gap-2 overflow-auto flex-wrap">
+                  {selectedSP.map((item: any) => (
+                    <span
+                      key={item.id}
+                      className="flex gap-1 p-2 border-[0.5px]  bg-uacs-primary-0 rounded-lg whitespace-nowrap items-center "
+                    >
+                      <p className="text-sm font-medium text-[#4A4C58]">
+                        {item.name}
+                      </p>
+                      <Close
+                        onClick={() => {
+                          const filtered = selectedSP.filter(
+                            (el: any) => el.id !== item.id
+                          );
+                          setSelectedSP(filtered);
+                        }}
+                        color="#C1C2C6"
+                        size="8"
+                      />
+                    </span>
+                  ))}
+                </div>
+              </div>
             </Stepper.Step>
 
             {/* Confirm sp modal */}
             <Stepper.Step completedIcon={3}>
-              <SelectMemebersStaff/>
-              <SelectSp/>
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
+                  <p>Selected Staff</p>
+                  <div className=" flex gap-2 overflow-auto flex-wrap">
+                    {selectedMembers.map((item) => (
+                      <span
+                        key={item.id}
+                        className="flex gap-1 p-2 border-[0.5px]  bg-uacs-primary-0 rounded-lg whitespace-nowrap items-center "
+                      >
+                        <p className="text-sm font-medium text-[#4A4C58]">
+                          {item.name}
+                        </p>
+                        <Close
+                          onClick={() => {
+                            const filtered = selectedMembers.filter(
+                              (el: any) => el.id !== item.id
+                            );
+                            setSelectedMembers(filtered);
+                          }}
+                          color="#C1C2C6"
+                          size="8"
+                        />
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <p>Selected Service Providers</p>
+                  <div className=" flex gap-2 overflow-auto flex-wrap">
+                    {selectedSP.map((item: any) => (
+                      <span
+                        key={item.id}
+                        className="flex gap-1 p-2 border-[0.5px]  bg-uacs-primary-0 rounded-lg whitespace-nowrap items-center "
+                      >
+                        <p className="text-sm font-medium text-[#4A4C58]">
+                          {item.name}
+                        </p>
+                        <Close
+                          onClick={() => {
+                            const filtered = selectedSP.filter(
+                              (el: any) => el.id !== item.id
+                            );
+                            setSelectedSP(filtered);
+                          }}
+                          color="#C1C2C6"
+                          size="8"
+                        />
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </Stepper.Step>
           </Stepper>
         </div>
@@ -121,7 +301,7 @@ export const GrantAccess = ({
         <Button onClick={nextStep}>Next step</Button> */}
 
           <Button
-            onClick={nextStep}
+            onClick={active === 2 ? grantAccess : nextStep}
             rightIcon={
               <ArrowLeft2 color="#ffffff" size={16} className="rotate-180" />
             }
@@ -130,8 +310,7 @@ export const GrantAccess = ({
               inner: "gap-[8px] ",
             }}
           >
-            
-           { active === 2 ? 'Proceed' : 'Next'}
+            {active === 2 ? "Proceed" : "Next"}
           </Button>
         </div>
       </div>

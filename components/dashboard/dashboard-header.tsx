@@ -50,13 +50,11 @@ export const DashboardHeader = ({
           </div>
 
           <div className="flex relative gap-4 items-center ">
-            <Image
-              src="/profile-img/image 2.svg"
-              // src={authUser?.profile_picture}
-              width="52"
-              height="52"
+            <img
+              // src="/profile-img/image 2.svg"
+              src={authUser?.profile_picture}
               alt="profile-pix"
-              className="rounded-full"
+              className="h-[52px] object-cover w-[52px] rounded-full"
             />
             <div className="flex flex-col gap-1">
               <h3 className="font-[Switzer] text-sm font-semibold text-uacs-eneutral-11">

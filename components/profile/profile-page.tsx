@@ -6,7 +6,7 @@ import { Button } from "@mantine/core";
 
 export const ProfilePage = () => {
   return (
-    <div className="bg-white px-20 pt-14 pb-20  flex flex-col gap-14 ">
+    <div className="bg-white px-20 scroll-bar-hidden overflow-auto pt-14 pb-20  flex flex-col gap-14 ">
       <div className="flex justify-between">
         <div className="flex gap-10">
           <Image

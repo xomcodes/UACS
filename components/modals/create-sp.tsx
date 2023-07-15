@@ -6,18 +6,18 @@ import {
   Modal,
   TextInput,
 } from "@mantine/core";
-import { Gallery } from "iconsax-react";
-import { url } from "inspector";
 import React, { FormEvent, useEffect, useState } from "react";
-import { Close } from "./icons/close";
-import { SpInfoIcon } from "./icons";
-// import { usePortal } from "@ibnlanre/portal";
+import { Gallery } from "iconsax-react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-// type Create = {
-//   opened: boolean;setOpened: React.Dispatch<React.SetStateAction<boolean>>
-// }
+
+import { Close } from "./icons/close";
+import { SpInfoIcon } from "./icons";
+
+
+
+
 
 export const CreateSp = ({
   opened,
@@ -27,7 +27,7 @@ export const CreateSp = ({
 }: {
   opened: boolean;
   setOpened: React.Dispatch<React.SetStateAction<boolean>>;
-  getSp: () => void;
+  getSp?: () => void;
   id?: number;
 }) => {
   const intialDetails = { name: "", website_url: "", picture: null };
@@ -68,6 +68,7 @@ export const CreateSp = ({
       });
       setOpened(false);
       setLoading(false);
+      if(getSp)
       getSp();
       setCreateSp(intialDetails);
     } catch (error) {
@@ -100,6 +101,7 @@ export const CreateSp = ({
       });
       setOpened(false);
       setLoading(false);
+      if(getSp)
       getSp();
       setCreateSp(intialDetails);
     } catch (error) {

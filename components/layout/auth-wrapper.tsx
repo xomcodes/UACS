@@ -1,6 +1,9 @@
-import LogoSmall from "@/shared/logo-small";
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
+
+
+import LogoSmall from "@/shared/logo-small";
+
 
 export const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
   return (

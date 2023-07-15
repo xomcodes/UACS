@@ -1,6 +1,7 @@
-import { DashboardAside, DashboardHeader } from '@/dashboard'
-import { ArrowDown2 } from 'iconsax-react'
 import React from 'react'
+
+
+import { DashboardAside, DashboardHeader } from '@/dashboard'
 
 export const Wrapper = ({children, pages, text, icon}:{children?: React.ReactNode,pages?: string,  text:string , icon?:React.ReactNode }) => {
   return (

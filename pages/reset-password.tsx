@@ -56,7 +56,7 @@ function ResetPassword() {
                 root: "flex flex-col gap-5",
                 label: "text-uacs-primary-90 text-sm font-normal",
                 input:
-                  "border-y border-l rounded-lg h-[54px] border-uacs-beerus-100 bg-[#F7F8F9] placeholder:text-uacs-primary-40 placeholder:font-normal placeholder:text-xs outline-none",
+                  "border-y text-[back] border-l rounded-lg h-[54px] border-uacs-beerus-100 bg-[#F7F8F9] placeholder:text-uacs-primary-40 placeholder:font-normal placeholder:text-xs outline-none",
                 innerInput: "h-[54px]",
               }}
             />
@@ -74,7 +74,7 @@ function ResetPassword() {
                 root: "flex flex-col gap-5",
                 label: "text-uacs-primary-90 text-sm font-normal",
                 input:
-                  "border-y border-l rounded-lg h-[54px] border-uacs-beerus-100 bg-[#F7F8F9] placeholder:text-uacs-primary-40 placeholder:font-normal placeholder:text-xs outline-none",
+                  "border-y  text-[black] border-l rounded-lg h-[54px] border-uacs-beerus-100 bg-[#F7F8F9] placeholder:text-uacs-primary-40 placeholder:font-normal placeholder:text-xs outline-none",
                 innerInput: "h-[54px]",
               }}
             />

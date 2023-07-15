@@ -1,5 +1,5 @@
-import { ArrowLeft2 } from 'iconsax-react'
 import React from 'react'
+import { ArrowLeft2 } from 'iconsax-react'
 
 export const FilterLeftText = () => {
   return (

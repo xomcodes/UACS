@@ -1,5 +1,5 @@
-import { Button, Modal } from "@mantine/core";
 import React from "react";
+import { Button, Modal } from "@mantine/core";
 import Image from "next/image";
 
 export const ResetAccount = ({

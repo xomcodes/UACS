@@ -1,23 +1,30 @@
+import React, { useState, useEffect } from "react";
 import { Button, Loader, Modal, Select, TextInput } from "@mantine/core";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import useAddMember from "../../hooks/use-add-member";
-import { Close } from "./icons";
-import { useRouter } from "next/router";
-import "react-toastify/dist/ReactToastify.css"
+
 import {ToastContainer, toast } from "react-toastify";
+import { useRouter } from "next/router";
+
+
+import { Close } from "./icons";
+import useAddMember from "../../hooks/use-add-member";
+
+interface IAddMember {
+  opened: boolean;
+  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+  spID?: number
+  getSp: () => void
+}
 
 export function AddMember({
   opened,
   setOpened,
   spID,
   getSp
-}: {
-  opened: boolean;
-  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
-  spID?: number
-  getSp: () => void
-}) {
+}: IAddMember) {
+
+
+
   const [loading, setLoading] = useState(false);
   const { add } = useAddMember();
   const { query } = useRouter();

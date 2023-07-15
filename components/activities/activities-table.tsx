@@ -1,9 +1,9 @@
+import LocalizedFormat from "dayjs/plugin/localizedFormat";
 import { LoadingOverlay, Table } from "@mantine/core";
-import axios from "axios";
 import { ArrowDown, ArrowUp } from "iconsax-react";
 import { useState, useEffect } from "react";
 import dayjs from "dayjs";
-import LocalizedFormat from "dayjs/plugin/localizedFormat";
+import axios from "axios";
 
 interface IActivitiesTable {
   activity: "string";

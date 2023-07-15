@@ -1,14 +1,18 @@
 import Image from "next/image";
-import { FormEvent, useState } from "react";
-
-import LogoSmall from "@/shared/logo-small";
-import { Button, Loader, PasswordInput, TextInput } from "@mantine/core";
+import { FormEvent, useContext, useState } from "react";
 import { useRouter } from "next/router";
+
+import { Button, Loader, PasswordInput, TextInput } from "@mantine/core";
 import axios from "axios";
 import { usePortal } from "@ibnlanre/portal";
-import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
+
+import Link from "next/link";
+import LogoSmall from "@/shared/logo-small";
+import { AuthContext, UserType } from "@/context/auth-provider";
+
+
 
 export interface IAuthUser {
   access: string;
@@ -25,6 +29,7 @@ function SignIn() {
   const [logedUser, setLogedUser] = useState({ email: "", password: "" });
   const { push } = useRouter();
   const [loading, setLoading] = useState(false);
+  const {setIsLoggedIn} = useContext(AuthContext) as UserType
 
   // state to save logged in user in  the browser 
   // if this was just normal usePortal(key, value), it will be saved in application state
@@ -60,6 +65,7 @@ function SignIn() {
         theme: 'colored'
       })
       setAuthUser(data);
+      setIsLoggedIn(true)
       // Then I push to the dashboard page
       push("/dashboard");
       // And I empty my form
@@ -129,7 +135,7 @@ function SignIn() {
                         root: "flex flex-col gap-5",
                         label: "text-uacs-primary-90 text-sm font-normal",
                         input:
-                          "rounded-lg border h-[54px] border-uacs-beerus-100 bg-[#F7F8F9] p-4 placeholder: text-uacs-primary-40 placeholder:font-normal placeholder:text-xs outline-none",
+                          "rounded-lg border text-[back] h-[54px] text-black border-uacs-beerus-100 bg-[#F7F8F9] p-4 placeholder: text-uacs-primary-40 placeholder:font-normal placeholder:text-xs outline-none",
                       }}
                     />
                   </span>
@@ -145,7 +151,7 @@ function SignIn() {
                       root: "flex flex-col gap-5",
                       label: "text-uacs-primary-90 text-sm font-normal",
                       input:
-                        "border-y border-l rounded-lg h-[54px] border-uacs-beerus-100 bg-[#F7F8F9] placeholder:text-uacs-primary-40 placeholder:font-normal placeholder:text-xs outline-none",
+                        "border-y  text-[back] border-l rounded-lg h-[54px] border-uacs-beerus-100 bg-[#F7F8F9] placeholder:text-uacs-primary-40 placeholder:font-normal placeholder:text-xs outline-none",
                       innerInput: "h-[54px]",
                     }}
                   />

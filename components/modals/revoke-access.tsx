@@ -1,6 +1,8 @@
-import { Button, Modal } from "@mantine/core";
 import React from "react";
 import Image from "next/image";
+
+
+import { Button, Modal } from "@mantine/core";
 
 export const ReVokeAccess = ({
   revokeopened,

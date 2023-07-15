@@ -1,5 +1,5 @@
-import { Button, Modal, Switch, TextInput } from "@mantine/core";
 import React from "react";
+import { Button, Modal, Switch, TextInput } from "@mantine/core";
 
 const spList = [
   {

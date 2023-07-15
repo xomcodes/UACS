@@ -1,7 +1,9 @@
-import { ArrowLeft2, SearchNormal1 } from 'iconsax-react'
 import React from 'react'
-import { FilterIcon } from './filter-icon'
 import { useRouter } from 'next/router'
+import { ArrowLeft2, SearchNormal1 } from 'iconsax-react'
+
+
+import { FilterIcon } from './filter-icon'
 
 export const FilterContainer = () => {
 

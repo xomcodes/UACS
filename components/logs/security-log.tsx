@@ -1,6 +1,6 @@
-import { LoadingOverlay, Table, clsx } from "@mantine/core";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { LoadingOverlay, Table, clsx } from "@mantine/core";
 
 
 export function SecurityLog() {

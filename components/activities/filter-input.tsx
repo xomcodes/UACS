@@ -1,5 +1,7 @@
-import { SearchNormal1 } from 'iconsax-react'
 import React from 'react'
+import { SearchNormal1 } from 'iconsax-react'
+
+
 import { FilterIcon } from './filter-icon'
 
 export const FilterInput = ({placeholder} : {placeholder?: any}) => {

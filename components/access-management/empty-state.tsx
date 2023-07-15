@@ -1,8 +1,9 @@
-// import { Button } from '@/shared'
+import React, { useState } from "react";
 import { clsx } from "@mantine/core";
 import Image from "next/image";
-import React, { useState } from "react";
 import { Button } from "@mantine/core";
+
+
 import { GrantAccess } from "@/modals";
 
 
@@ -44,7 +45,7 @@ export const EmptyState = ({
         <Button onClick={onClick} className="bg-uacs-ared-7 rounded-lg hover:bg-red-800 h-[46px]  text-white text-sm  w-fit ">
           {btnText}
         </Button>
-        {/* <GrantAccess opened={opened} setOpened={setOpened}/> */}
+        <GrantAccess opened={opened} setOpened={setOpened}/>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Briefcase, Home3, LogoutCurve, People, UserEdit } from "iconsax-react";
 
 // import { BtnwithIcon } from "@/shared";
@@ -9,9 +9,11 @@ import { Button, clsx } from "@mantine/core";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { CreateSp } from "@/modals";
+import { AuthContext, UserType } from "@/context/auth-provider";
 
 export const DashboardAside = () => {
   const { pathname, push } = useRouter();
+  const { setIsLoggedIn } = useContext(AuthContext) as UserType;
   const asideList = [
     {
       img: (
@@ -82,6 +84,8 @@ export const DashboardAside = () => {
       ),
       name: "Logout",
       action: () => {
+        localStorage.removeItem("login-user");
+        setIsLoggedIn(false);
         push("/");
       },
     },
@@ -134,10 +138,17 @@ export const DashboardAside = () => {
                   </div>
                 </Link>
               ) : (
-                <div className="flex flex-col gap-2 ">
+                <div
+                  className={clsx(
+                    pathname.includes("logs")
+                      ? "text-uacs-ared-7"
+                      : "text-uacs-eneutral-9",
+                    "flex flex-col gap-2 "
+                  )}
+                >
                   <div className="flex gap-3 items-center ">
                     <div className=""> {item.img} </div>
-                    <h2 className=" text-uacs-eneutral-9 hover:text-uacs-ared-7 font-medium font-[Switzer] text-[0.9rem]">
+                    <h2 className="hover:text-uacs-ared-7 font-medium font-[Switzer] text-[0.9rem]">
                       {item.name}
                     </h2>
                   </div>
