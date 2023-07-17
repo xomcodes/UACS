@@ -87,7 +87,7 @@ export const SpList1 = ({
         </div>
         <CreateSp opened={opened} setOpened={setOpened} getSp={getSp} />
 
-        <div className="flex flex-col gap-4 overflow-auto">
+        <div className="flex flex-col gap-4 overflow-auto scroll-bar-hidden">
           {sp?.map((item) => (
             <div
               key={item.id}
