@@ -7,7 +7,8 @@ import { useRouter } from "next/router";
 
 import { Close } from "./icons";
 import useAddMember from "../../hooks/use-add-member";
-import { successNotification } from "../../utils/notification";
+import { errorNotification, successNotification } from "../../utils/notification";
+import { handleError } from "../../utils/error-handler";
 
 interface IAddMember {
   opened: boolean;
@@ -47,8 +48,8 @@ export function AddMember({ opened, setOpened, spID, getSp }: IAddMember) {
       getSp();
       setOpened(false);
       setLoading(false);
-    } catch (error) {
-      console.log(error);
+    } catch (error:any) {
+      handleError(error)
       setLoading(false);
     }
   };

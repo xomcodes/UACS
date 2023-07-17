@@ -8,16 +8,13 @@ import {
 } from "@mantine/core";
 import React, { FormEvent, useEffect, useState } from "react";
 import { Gallery } from "iconsax-react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
-
 
 import { Close } from "./icons/close";
 import { SpInfoIcon } from "./icons";
-
-
-
-
+import { errorNotification } from "../../utils/notification";
+import { handleError } from "../../utils/error-handler";
 
 export const CreateSp = ({
   opened,
@@ -68,11 +65,11 @@ export const CreateSp = ({
       });
       setOpened(false);
       setLoading(false);
-      if(getSp)
-      getSp();
+      if (getSp) getSp();
       setCreateSp(intialDetails);
-    } catch (error) {
-      console.log(error);
+      console.log(data);
+    } catch (error: any) {
+      handleError(error)
       setLoading(false);
     }
   };
@@ -101,11 +98,10 @@ export const CreateSp = ({
       });
       setOpened(false);
       setLoading(false);
-      if(getSp)
-      getSp();
+      if (getSp) getSp();
       setCreateSp(intialDetails);
-    } catch (error) {
-      console.log(error);
+    } catch (error :any) {
+      handleError(error)
       setLoading(false);
     }
   };
@@ -131,8 +127,8 @@ export const CreateSp = ({
         website_url: data?.url,
       });
       setImage(data?.test_picture_url);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      handleError(error)
       setLoadingDetails(false);
     }
   };
@@ -163,7 +159,7 @@ export const CreateSp = ({
       opened={opened}
       onClose={() => setOpened(false)}
       size="44vw"
-      title= { id? ("Update Service Provider") : ("Create Service Provider")}
+      title={id ? "Update Service Provider" : "Create Service Provider"}
       classNames={{
         header: "px-6 pt-8 pb-2",
         body: "px-6 pb-8 flex-1 flex",
@@ -232,7 +228,7 @@ export const CreateSp = ({
                 }
                 id="file-input"
                 hidden
-                accept="image/*"
+                accept="image/png,image/jpg,image/jpeg,image/webp"
               />
             </label>
           </div>
@@ -280,10 +276,7 @@ export const CreateSp = ({
               "Update Service Provider"
             ) : (
               "Create Service Provider"
-            )
-            
-            }
-            
+            )}
           </Button>
         </div>
       </form>

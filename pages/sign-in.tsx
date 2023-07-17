@@ -12,6 +12,8 @@ import Link from "next/link";
 import LogoSmall from "@/shared/logo-small";
 import { AuthContext, UserType } from "@/context/auth-provider";
 import Head from "next/head";
+import { errorNotification } from "../utils/notification";
+import { handleError } from "../utils/error-handler";
 
 
 
@@ -71,10 +73,11 @@ function SignIn() {
       push("/dashboard");
       // And I empty my form
       setLogedUser({ email: "", password: "" });
-    } catch (error) {
+    } catch (error: any) {
+      handleError(error)
       setLoading(false)
       // If any error occured in the above process, it is logged to the console at this point
-      console.log(error);
+    
 
       toast.error("Ouch.... Wrong details", {
         theme: 'colored'

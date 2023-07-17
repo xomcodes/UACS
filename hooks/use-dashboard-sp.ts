@@ -1,12 +1,11 @@
 import { usePortal } from '@ibnlanre/portal';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react'
+import { errorNotification } from '../utils/notification';
+import { handleError } from '../utils/error-handler';
 
 function useDashboardSp() {
 
-
-
-    // MOVE BELOW TO CUSTOM HOOK
   const [sp, setSp] = useState<{name:string,url:string}[]>([])
   const [loading, setLoading]  = useState(false)
   const [totalSp, setTotalSp] = usePortal('total-sp',0 )
@@ -30,13 +29,13 @@ function useDashboardSp() {
         },
       });
       // Setting my state to the data i received
-    //  console.log(data)
+    //
        setLoading(false)
       setSp(data.results);
       setTotalSp(data.count)
 
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      handleError(error)
       setLoading(false)
     }
   };

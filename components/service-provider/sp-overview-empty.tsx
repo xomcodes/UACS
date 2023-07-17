@@ -2,18 +2,21 @@ import { Copy, Edit2 } from "iconsax-react";
 import { Switch } from "@mantine/core";
 import React, { useState, useEffect } from "react";
 
-
 import { InactiveDot } from "./inactive-dot";
 import { EmptyState } from "@/access-management";
 import { SpOverviewTable } from "./sp-overview-table";
 import { AddMember } from "@/modals";
 import { ISPDetails } from "../../hooks/use-sp-details";
 
-
-export const SpOverviewEmpty = ({ spDetails, getSp,}: {spDetails: ISPDetails, getSp: () => void}) => {
-
+export const SpOverviewEmpty = ({
+  spDetails,
+  getSp,
+}: {
+  spDetails: ISPDetails;
+  getSp: () => void;
+}) => {
   const [opened, setOpened] = useState(false);
-  
+  console.log(spDetails)
 
   return (
     <div className="flex flex-col gap-10 flex-1">
@@ -23,7 +26,7 @@ export const SpOverviewEmpty = ({ spDetails, getSp,}: {spDetails: ISPDetails, ge
             <img
               width={152}
               height={152}
-              alt="comX"
+              alt="service provider logo"
               src={spDetails?.test_picture_url || ""}
             />
           </div>
@@ -73,10 +76,18 @@ export const SpOverviewEmpty = ({ spDetails, getSp,}: {spDetails: ISPDetails, ge
                 {/* {
                   spDetails?.status ? 
                 } */}
+                {spDetails?.is_active === true ?
                 <div className="flex gap-1 px-2 rounded-lg bg-[#E7F9F0] items-center max-w-fit">
                   <InactiveDot color="#0DBF66" />
                   <p className="text-[#076D3A] text-sm font-normal">Active</p>
                 </div>
+
+                :
+                <div className="flex gap-1 px-2 rounded-lg bg-[#FDEEEE] items-center max-w-fit">
+                  <InactiveDot color="#ED5556" />
+                  <p className="text-[#873031] text-sm font-normal">Inactive</p>
+                </div>
+                }
               </div>
             </div>
 
@@ -110,9 +121,7 @@ export const SpOverviewEmpty = ({ spDetails, getSp,}: {spDetails: ISPDetails, ge
 
             <div className="flex flex-col gap-10 justify-between">
               <div className="flex-col flex gap-3">
-                <Switch
-                // value={spDetails?.status === "Active" ? true : false}
-                />
+                <Switch checked={spDetails?.is_active} />
               </div>
 
               <span className="gap-2   bg-uacs-ared-1 cursor-pointer edit-shadow px-4 py-2 flex justify-center items-center rounded-lg max-w-fit ">
@@ -138,13 +147,10 @@ export const SpOverviewEmpty = ({ spDetails, getSp,}: {spDetails: ISPDetails, ge
             />
           </div>
         )}
-        
       </div>
-     {opened ? 
-      <AddMember getSp={getSp} opened={opened} setOpened={setOpened} />
-      : null
-     }
-     
+      {opened ? (
+        <AddMember getSp={getSp} opened={opened} setOpened={setOpened} />
+      ) : null}
     </div>
   );
 };

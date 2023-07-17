@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, {useState, useEffect } from 'react'
+import { errorNotification } from '../utils/notification';
+import { handleError } from '../utils/error-handler';
 
 
 interface iActivity { 
@@ -31,8 +33,8 @@ function useDashboardActivities() {
           });
           setLoading(false)
           setActivity(data.results);
-        } catch (error) {
-          console.log(error);
+        } catch (error: any) {
+          handleError(error)
           setLoading(false)
           
         }

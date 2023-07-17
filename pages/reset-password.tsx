@@ -5,6 +5,9 @@ import React, { FormEvent, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Head from "next/head";
+import Link from "next/link";
+import { errorNotification } from "../utils/notification";
+import { handleError } from "../utils/error-handler";
 
 function ResetPassword() {
   const [loading, setLoading] = useState(false);
@@ -27,8 +30,8 @@ function ResetPassword() {
       });
       setLoading(false)
       push("/sign-in");
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      handleError(error)
       setLoading(false);
     }
   };
@@ -108,9 +111,9 @@ function ResetPassword() {
           className="flex gap-[13px] items-center  justify-center cursor-pointer"
         >
           <ArrowLeft2 color="#54565B" size="24px" />
-          <h4 className=" text-[#54565B] text-sm font-medium">
+          <Link href={'/sign-in'} className=" text-[#54565B] text-sm font-medium">
             Back to Sign In
-          </h4>
+          </Link>
         </div>
       </div>
     </AuthWrapper>

@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
 import Head from "next/head";
+import { errorNotification } from "../utils/notification";
+import { handleError } from "../utils/error-handler";
 
 function VerifyEmail() {
   const [loading, setLoading] = useState(false);
@@ -25,12 +27,13 @@ function VerifyEmail() {
         },
         data: { otp_code: pin, email: query?.email },
       });
-      console.log(data);
+     
       setLoading(false);
       push(`/reset-password?email=${query?.email}`);
-    } catch (error) {
+    } catch (error: any) {
+      handleError(error)
         setLoading(false)
-      console.log(error);
+     
     }
   };
 

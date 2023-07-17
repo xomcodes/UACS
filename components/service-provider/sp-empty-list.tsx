@@ -1,15 +1,24 @@
 import { EmptyState} from "@/access-management";
 import { FilterIcon } from "@/activities/filter-icon";
 import { FilterInput } from "@/activities/filter-input";
+import { CreateSp } from "@/modals";
 import { BtnwithIcon } from "@/shared";
 import { usePortal } from "@ibnlanre/portal";
 import { Button, TextInput } from "@mantine/core";
 import { SearchNormal1 } from "iconsax-react";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import { IServiceProvider } from "./sp-list1";
 
-export const SpEmptyList = () => {
+export const SpEmptyList = ({
+  sp,
+  getSp,
+}: {
+  sp: IServiceProvider[];
+  getSp: () => void;
+}) => {
   const [totalSp, setTotalSp] = usePortal<number>("total-sp");
+  const [opened, setOpened] = useState(false);
   return (
     <div className="pt-8 px-[clamp(0.75rem,1.6vw,1.5rem)]  flex-1 flex flex-col gap-10">
       <div className="flex flex-col gap-10  flex-1">
@@ -39,7 +48,7 @@ export const SpEmptyList = () => {
                 <FilterIcon />
               </div>
             </div>
-            <Button
+            <Button  onClick={() => setOpened(true)}
               leftIcon={
                 <Image
                   src="/dashboard/plus.png"
@@ -58,8 +67,35 @@ export const SpEmptyList = () => {
           </div>
         </div>
 
-        <EmptyState btnText="Create Service Provider" />
+        <div
+      className="  flex justify-center items-center bg-white h-full rounded-lg"
+    >
+      {/* Pasing classname as prop is having issues here. So i am suppoesed to to remove px-[clamp(....so it doesnt issues for othe pages)] bg white  h-85 */}
+      <div className="flex flex-col gap-8 items-center">
+        <Image
+          src="/access-m-images/Vector.png"
+          width="176"
+          height="176"
+          alt="nostaff"
+        />
+        <div className="flex flex-col items-center justify-center gap-1">
+          <h3 className="text-xl font-semibold text-uacs-primary-90 ">
+          No Service Provider Created Yet
+          </h3>
+          <p className="text-sm font-normal  max-w-[308px] text-uacs-cneutral-7 text-center">
+          A list of service providers created will appear here
+          </p>
+        </div>
+        <Button
+          onClick={() => setOpened(true)}
+          className="!bg-uacs-ared-7 !rounded-lg hover:!bg-red-800 !h-[46px]  !text-white !text-sm  !w-fit "
+        >
+          Create Service Provider
+        </Button>
       </div>
+    </div>
+      </div>
+      <CreateSp opened={opened} setOpened={setOpened}  getSp={getSp}/>
 
       {/* //    <FilterContainer/> */}
     </div>

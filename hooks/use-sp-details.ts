@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
+import { errorNotification } from "../utils/notification";
+import { handleError } from "../utils/error-handler";
  export interface ISPDetails {
   id: number;
   url: string;
@@ -12,6 +14,7 @@ import React, { useState, useEffect } from "react";
   slug: string;
   toggle_status_url: string;
   staffs_with_permission: any[];
+  is_active: boolean
 }
 
 function useSpDetails() {
@@ -34,10 +37,10 @@ function useSpDetails() {
         },
       });
       setLoading(false)
-      // console.log(data);
+      
       setSpDetails(data);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      handleError(error)
       setLoading(false)
     }
   };

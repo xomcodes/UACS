@@ -1,10 +1,10 @@
 import { MantineProvider } from "@mantine/core";
-import { ToastContainer } from "react-toastify";
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { PortalProvider } from "@ibnlanre/portal";
 import { ModalsProvider } from "@mantine/modals";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import "../styles/globals.css";
 import AuthProvider from "@/context/auth-provider";
@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <MantineProvider withGlobalStyles withNormalizeCSS>
           <AuthProvider>
             <ModalsProvider>
-              {/* <ToastContainer /> */}
+              <ToastContainer />
               <Component {...pageProps} />
             </ModalsProvider>
           </AuthProvider>

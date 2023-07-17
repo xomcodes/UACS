@@ -1,26 +1,25 @@
-import { Button, LoadingOverlay, Menu, Popover, Text } from "@mantine/core";
-import { Add, CloseCircle, Edit, Eye, Trash } from "iconsax-react";
 import React, { useState } from "react";
-import { Deactivate } from "./icons/deactivate";
-import { Dots } from "@/service-provider";
-import { AddMember, CreateSp } from "@/modals";
+import { LoadingOverlay, Menu, Text } from "@mantine/core";
+import axios from "axios";
+import { Add, Edit, Eye, Trash } from "iconsax-react";
 import Link from "next/link";
 import { modals } from "@mantine/modals";
-import { Activate } from "./icons";
-import axios from "axios";
-import { IServiceProvider } from "@/service-provider/sp-list1";
 
-export const Active = ({
-  spID,
-  getSp,
-  spStatus,
-  sp,
-}: {
+import { Activate } from "./icons";
+import { IServiceProvider } from "@/service-provider/sp-list1";
+import { AddMember, CreateSp } from "@/modals";
+import { handleError } from "../../utils/error-handler";
+import { Dots } from "@/service-provider";
+import { Deactivate } from "./icons/deactivate";
+
+interface iActive {
   spID: number;
   getSp: () => void;
   spStatus: boolean;
   sp: IServiceProvider;
-}) => {
+}
+
+export const Active = ({ spID, getSp, spStatus, sp }: iActive) => {
   const [addMemberopened, setAddMemberOpened] = useState(false);
   const [updateOpened, setUpdateOpened] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -30,8 +29,9 @@ export const Active = ({
     const accessToken = JSON.parse(
       localStorage.getItem("login-user") as string
     )?.access;
-    const formData = new FormData()
-    formData.append("is_active", String(!sp.is_active))
+    const formData = new FormData();
+    formData.append("is_active", String(!sp.is_active));
+
     try {
       const { data } = await axios({
         url: `${process.env.NEXT_PUBLIC_BASE_URL}service_providers/${spID}/status_toggle/`,
@@ -43,8 +43,8 @@ export const Active = ({
       });
       setLoading(false);
       getSp();
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      handleError(error);
       setLoading(false);
     }
   };
@@ -63,8 +63,11 @@ export const Active = ({
         confirm: `Yes, ${spStatus ? "Deactivate" : "Activate"}`,
         cancel: `No, Don't ${spStatus ? "Deactivate" : "Activate"}`,
       },
-      confirmProps: { color: sp?.is_active ? "red" : "green", className: sp?.is_active ? "bg-uacs-ared-7" : "bg-uacs-success" },
-      onCancel: () => console.log("Cancel"),
+      confirmProps: {
+        color: sp?.is_active ? "red" : "green",
+        className: sp?.is_active ? "bg-uacs-ared-7" : "bg-uacs-success",
+      },
+      onCancel: () => {},
       onConfirm: () => handleToggleStatus(),
     });
 

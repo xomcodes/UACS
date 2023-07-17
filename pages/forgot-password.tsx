@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import {toast} from "react-toastify"
 import Head from "next/head";
+import { errorNotification } from "../utils/notification";
+import { handleError } from "../utils/error-handler";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -29,8 +31,8 @@ function ForgotPassword() {
       toast.success(data.message)
       setLoading(false)
       push(`/verify-email?email=${email}`)
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      handleError(error)
     }
   };
 

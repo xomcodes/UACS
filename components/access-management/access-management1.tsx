@@ -7,6 +7,8 @@ import Image from "next/image";
 import { AccessTable1 } from "./accesstable1";
 import { GrantAccess, ModifyAccess } from "@/modals";
 import { EmptyState } from "./empty-state";
+import { errorNotification } from "../../utils/notification";
+import { handleError } from "../../utils/error-handler";
 
 export interface IAccessManager {
   first_name: string;
@@ -38,8 +40,8 @@ export const AccessManagement1 = () => {
       });
       setLoading(false);
       setAccessManager(data.results);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      handleError(error)
       setLoading(false);
     }
   };

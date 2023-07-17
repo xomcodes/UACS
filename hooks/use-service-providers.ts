@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { errorNotification } from "../utils/notification";
+import { handleError } from "../utils/error-handler";
 
 interface IServiceP {
   name: string;
@@ -34,8 +36,8 @@ function useServiceProviders() {
       });
       setLoading(false)
       setSp(data.results);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      handleError(error)
       setLoading(false)
     }
   };

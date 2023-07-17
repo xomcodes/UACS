@@ -15,7 +15,7 @@ function ServiceProvider() {
         <title>UACS | Service Provider</title>
       </Head>
       <Wrapper text="Service Provider">
-        {sp.length ? <SpList1 getSp={getSp} sp={sp} /> : <SpEmptyList />}
+        {sp.length ? <SpList1 getSp={getSp} sp={sp} /> : <SpEmptyList  sp={sp} getSp={getSp} />}
 
         {/* <SpList1/> */}
         {/* <SpOverviewEmpty/> */}

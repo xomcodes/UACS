@@ -7,6 +7,8 @@ import axios from 'axios'
 
 
 import { ArrowRightIcon } from './arrow-right-icon'
+import { errorNotification } from '../../utils/notification'
+import { handleError } from '../../utils/error-handler'
 
 
 export const AccessCard2 = () => {
@@ -31,8 +33,8 @@ export const AccessCard2 = () => {
       });
       setLoading(false)
       setStaffAccess(data)
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      handleError(error)
       setLoading(false)
     }
   };

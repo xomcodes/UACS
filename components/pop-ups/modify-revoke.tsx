@@ -1,7 +1,8 @@
-import { ModifyAccess, ReVokeAccess, ResetAccount } from "@/modals";
-import { Menu, Popover } from "@mantine/core";
-import { ArrowDown2, CloseCircle, Edit } from "iconsax-react";
 import { useState } from "react";
+import { Menu } from "@mantine/core";
+import { ArrowDown2, CloseCircle, Edit } from "iconsax-react";
+
+import { ModifyAccess, ReVokeAccess } from "@/modals";
 
 export function ModifyRevoke() {
   const [opened, setOpened] = useState(false);
@@ -54,7 +55,10 @@ export function ModifyRevoke() {
         </Menu.Item>
       </Menu.Dropdown>
       {/* <ResetAccount  /> */}
-      <ReVokeAccess revokeopened={revokeOpened} setRevokeOpened={setRevokeOpened}/>
+      <ReVokeAccess
+        revokeopened={revokeOpened}
+        setRevokeOpened={setRevokeOpened}
+      />
       <ModifyAccess opened={opened} setOpened={setOpened} />
     </Menu>
   );

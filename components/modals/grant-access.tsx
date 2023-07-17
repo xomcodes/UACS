@@ -20,6 +20,8 @@ import useAddMember from "../../hooks/use-add-member";
 import useServiceProviders from "../../hooks/use-service-providers";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { errorNotification } from "../../utils/notification";
+import { handleError } from "../../utils/error-handler";
 
 const staffList = [
   "Ayodele Emmanuel Davies",
@@ -97,8 +99,8 @@ export const GrantAccess = ({ opened, getStaff, setOpened }: IGrantAccess) => {
       getStaff();
       setOpened(false);
       setRequestLoading(false);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      handleError(error)
       setRequestLoading(false);
     }
   };

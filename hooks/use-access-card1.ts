@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { usePortal } from '@ibnlanre/portal';
 import axios from 'axios';
+import { errorNotification } from '../utils/notification';
+import { handleError } from '../utils/error-handler';
 
 function useAccessCard1() {
   const [totalSp, setTotalSp] = usePortal<number>("total-sp");
@@ -10,7 +12,7 @@ function useAccessCard1() {
         "sp-access"
       );
       const [loading, setLoading] = useState(false)
-      // console.log(totalSp)
+
     
       //  Function to get inactive sp's
       const getCount = async () => {
@@ -30,8 +32,8 @@ function useAccessCard1() {
           });
           setLoading(false)
           setStaffAccess(data);
-        } catch (error) {
-          console.log(error);
+        } catch (error : any) {
+          handleError(error)
           setLoading(false)
         }
       };

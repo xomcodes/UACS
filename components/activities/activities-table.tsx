@@ -4,6 +4,8 @@ import { LoadingOverlay, Table } from "@mantine/core";
 import { ArrowDown, ArrowUp } from "iconsax-react";
 import dayjs from "dayjs";
 import axios from "axios";
+import { errorNotification } from "../../utils/notification";
+import { handleError } from "../../utils/error-handler";
 
 
 interface IActivitiesTable {
@@ -36,8 +38,8 @@ export function ActivitiesTable() {
       });
       setActivity(data.results);
       setLoading(false);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      handleError(error)
       setLoading(false);
     }
   };
@@ -46,7 +48,6 @@ export function ActivitiesTable() {
     getActivities();
   }, []);
 
-  console.log(activity);
 
   const rows = activity.map((element) => (
     <tr key={element.id} className=" ">

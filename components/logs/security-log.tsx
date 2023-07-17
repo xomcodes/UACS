@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { LoadingOverlay, Table, clsx } from "@mantine/core";
+import { errorNotification } from "../../utils/notification";
+import { handleError } from "../../utils/error-handler";
 
 export function SecurityLog() {
   const [security, setSecurity] = useState<
@@ -44,8 +46,8 @@ export function SecurityLog() {
           return acc;
         }, [])
       );
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      handleError(error)
       setLoading(false);
     }
   };
@@ -55,15 +57,12 @@ export function SecurityLog() {
   }, []);
 
   const rows = security.map((element) => (
-    <tr key={element?.id} className=" ">
+    <tr key={element?.id}>
       <td className="td-name  ">{element?.action}</td>
       <td
-        className={clsx(
-          element.result === "Failed"
-            ? " text-uacs-ared-6"
-            : "text-uacs-agreen-7",
-          "td-name"
-        )}
+        className={clsx(element.result === "Success"
+        ? "!text-[#30AD74]"
+        : "text-[#BF2018]", "!font-[Switzer] !font-normal !border-t !border-[#f5f5f5] !text-[0.875rem]")}
       >
         {element?.result}
       </td>

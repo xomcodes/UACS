@@ -18,6 +18,11 @@ export interface IServiceProvider {
   picture: string
 }
 
+
+const avatarColors =[
+ '#FFC700', '#009EF7','#F1416C', '#181C32', '#181C32', '#BF2018'
+]
+
 export const SpList1 = ({
   sp,
   getSp,
@@ -144,22 +149,25 @@ export const SpList1 = ({
               </div>
 
               {/* right */}
-              <div className="flex flex-col gap-1 justify-end relative">
-                <p className="text-uacs-primary-70 text-xs font-normal">
+              <div className="flex flex-col gap-1 justify-between relative">
+                <p className="text-uacs-primary-70 text-right mr-[65px] text-xs font-normal">
                   Staff
                 </p>
 
                 <div className="flex  gap-6 justify-end  ">
                   <div className="flex">
                     {item?.staffs_with_permission?.map((item, id) => (
+                      id < 6 ?
                       <div
                         key={id}
-                        className="border-2 ml-[-10px] border-white bg-[#FFC700] h-9 w-9 py-[9.5px] px-[12.6px] flex justify-center rounded-full items-center"
+                        style={{background: avatarColors[id]}}
+                        className="border-2 ml-[-10px] border-white h-9 w-9 py-[9.5px] px-[12.6px] flex justify-center rounded-full items-center"
                       >
                         <h2 className="text-white text-sm font-semibold">
                           {item?.first_name?.[0]}
                         </h2>
                       </div>
+                      : null
                     ))}
                   </div>
 
