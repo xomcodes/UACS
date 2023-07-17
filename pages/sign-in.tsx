@@ -142,7 +142,7 @@ function SignIn() {
                         root: "flex flex-col gap-5",
                         label: "text-uacs-primary-90 text-sm font-normal",
                         input:
-                          "rounded-lg border h-[54px] text-black border-uacs-beerus-100 bg-[#F7F8F9] p-4 placeholder: text-uacs-primary-40 placeholder:font-normal placeholder:text-xs outline-none",
+                          "rounded-lg border h-[54px] text-black border-uacs-beerus-100 bg-[#F7F8F9] p-4 placeholder:text-uacs-primary-40 placeholder:font-normal placeholder:text-xs outline-none",
                       }}
                     />
                   </span>
