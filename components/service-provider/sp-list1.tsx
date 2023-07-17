@@ -33,7 +33,7 @@ export const SpList1 = ({
   const [opened, setOpened] = useState(false);
   
   return (
-    <div className="pt-8 px-[clamp(0.75rem,1.6vw,1.5rem)] flex flex-col gap-10 overflow-auto scroll-bar-hidden">
+    <div className="pt-8 px-[clamp(0.75rem,1.6vw,1.5rem)] flex flex-col gap-10 overflow-auto ">
       <div className="flex flex-col gap-10 overflow-auto">
         <div className="flex justify-between items-center ">
           <h3 className="text-base font-semibold text-uacs-eneutral-11">
