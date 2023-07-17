@@ -4,6 +4,8 @@ import {
   Button,
   Group,
   Image,
+  Loader,
+  LoadingOverlay,
   Modal,
   Select,
   Stepper,
@@ -38,7 +40,7 @@ interface IGrantAccess {
 
 export const GrantAccess = ({ opened, getStaff, setOpened }: IGrantAccess) => {
   const [active, setActive] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [requestLoading, setRequestLoading] = useState(false);
   const nextStep = () =>
     setActive((current) => (current < 2 ? current + 1 : current));
   const prevStep = () =>
@@ -54,7 +56,7 @@ export const GrantAccess = ({ opened, getStaff, setOpened }: IGrantAccess) => {
     []
   );
 
-  const { sp } = useServiceProviders();
+  const { sp, loading } = useServiceProviders();
   const [spList, setSpList] = useState([]);
 
   useEffect(() => {
@@ -72,7 +74,7 @@ export const GrantAccess = ({ opened, getStaff, setOpened }: IGrantAccess) => {
   }, [sp]);
 
   const grantAccess = async () => {
-    setLoading(true);
+    setRequestLoading(true);
     const accessToken = JSON.parse(
       localStorage.getItem("login-user") as string
     )?.access;
@@ -94,10 +96,10 @@ export const GrantAccess = ({ opened, getStaff, setOpened }: IGrantAccess) => {
       });
       getStaff();
       setOpened(false);
-      setLoading(false);
+      setRequestLoading(false);
     } catch (error) {
       console.log(error);
-      setLoading(false);
+      setRequestLoading(false);
     }
   };
 
@@ -302,6 +304,7 @@ export const GrantAccess = ({ opened, getStaff, setOpened }: IGrantAccess) => {
 
           <Button
             onClick={active === 2 ? grantAccess : nextStep}
+            disabled={requestLoading}
             rightIcon={
               <ArrowLeft2 color="#ffffff" size={16} className="rotate-180" />
             }
@@ -310,10 +313,23 @@ export const GrantAccess = ({ opened, getStaff, setOpened }: IGrantAccess) => {
               inner: "gap-[8px] ",
             }}
           >
-            {active === 2 ? "Proceed" : "Next"}
+            {active === 2 ? (
+              requestLoading ? (
+                <span className="flex text-white items-center gap-1">
+                   Please wait... <Loader size='sm'  />
+                </span>
+              ) : (
+                "Proceed"
+              )
+            ) : (
+              "Next"
+            )}
+
+          
           </Button>
         </div>
       </div>
+      <LoadingOverlay visible={loading} />
     </Modal>
   );
 };

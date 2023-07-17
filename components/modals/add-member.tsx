@@ -2,29 +2,21 @@ import React, { useState, useEffect } from "react";
 import { Button, Loader, Modal, Select, TextInput } from "@mantine/core";
 import axios from "axios";
 
-import {ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/router";
-
 
 import { Close } from "./icons";
 import useAddMember from "../../hooks/use-add-member";
+import { successNotification } from "../../utils/notification";
 
 interface IAddMember {
   opened: boolean;
   setOpened: React.Dispatch<React.SetStateAction<boolean>>;
-  spID?: number
-  getSp: () => void
+  spID?: number;
+  getSp: () => void;
 }
 
-export function AddMember({
-  opened,
-  setOpened,
-  spID,
-  getSp
-}: IAddMember) {
-
-
-
+export function AddMember({ opened, setOpened, spID, getSp }: IAddMember) {
   const [loading, setLoading] = useState(false);
   const { add } = useAddMember();
   const { query } = useRouter();
@@ -34,7 +26,7 @@ export function AddMember({
   const [selected, setSelected] = useState<{ name: string; id: number }[]>([]);
 
   const handleSubmit = async () => {
-    setLoading(true)
+    setLoading(true);
     const accessToken = JSON.parse(
       localStorage.getItem("login-user") as string
     )?.access;
@@ -51,10 +43,8 @@ export function AddMember({
           sp_list: [spID ? spID : query?.id],
         },
       });
-      toast.success("Adding Staff", {
-        theme: "colored",
-      });
-      getSp()
+      successNotification("Staff added successfully");
+      getSp();
       setOpened(false);
       setLoading(false);
     } catch (error) {
@@ -64,7 +54,6 @@ export function AddMember({
   };
 
   return (
-    // <ToastContainer toastClassName={"CustomToast"}>
     <Modal
       centered
       size="44vw"
@@ -140,6 +129,5 @@ export function AddMember({
         </Button>
       </div>
     </Modal>
-    // </ToastContainer>
   );
 }

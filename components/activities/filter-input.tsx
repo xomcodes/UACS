@@ -4,6 +4,8 @@ import { SearchNormal1 } from 'iconsax-react'
 
 import { FilterIcon } from './filter-icon'
 
+
+
 export const FilterInput = ({placeholder} : {placeholder?: any}) => {
   return (
     <div className='flex '>

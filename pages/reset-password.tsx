@@ -4,6 +4,7 @@ import { ArrowLeft2 } from "iconsax-react";
 import React, { FormEvent, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import Head from "next/head";
 
 function ResetPassword() {
   const [loading, setLoading] = useState(false);
@@ -33,6 +34,11 @@ function ResetPassword() {
   };
 
   return (
+
+    <>
+    <Head>
+   <title>UACS | Reset Password</title>
+   </Head>
     <AuthWrapper>
       <div className="flex flex-col gap-10">
         <div className="flex flex-col gap-8">
@@ -108,6 +114,7 @@ function ResetPassword() {
         </div>
       </div>
     </AuthWrapper>
+    </>
   );
 }
 

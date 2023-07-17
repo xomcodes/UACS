@@ -1,13 +1,13 @@
-import { ModifyAccess } from "@/modals/modify-access";
-import { ResetAccount } from "@/modals/reset-account";
-import { Active } from "@/pop-ups";
-import { ModifyRevoke } from "@/pop-ups/modify-revoke";
-import { usePortal } from "@ibnlanre/portal";
+
+import {  useState } from "react";
 import { LoadingOverlay, Popover, Table, clsx } from "@mantine/core";
-import axios from "axios";
 import { ArrowDown, ArrowDown2, ArrowUp } from "iconsax-react";
-import { useEffect, useState } from "react";
+
+import { ResetAccount } from "@/modals/reset-account";
+import { ModifyRevoke } from "@/pop-ups/modify-revoke";
 import { IAccessManager } from "./access-management1";
+
+
 
 export function AccessTable1({
   accessManager,

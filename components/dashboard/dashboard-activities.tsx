@@ -1,46 +1,16 @@
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
-
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import { ArrowRight2, FolderAdd, UserCirlceAdd } from "iconsax-react";
 import clsx from "clsx";
-import axios from "axios";
+import { LoadingOverlay } from "@mantine/core";
+
+import useDashboardActivities from "../../hooks/use-dashboard-activities";
 
 export const DashboardActivities = () => {
-  dayjs.extend(relativeTime)
+  dayjs.extend(relativeTime);
 
-  const [activity, setActivity] = useState<
-    { activity: "string"; actor_name: "string"; id: number, time:Date, action_time: Date }[]
-  >([]);
-
-
-  
-  // Process of sending a  GET request
-  const getActivities = async () => {
-    const accessToken = JSON.parse(
-      localStorage.getItem("login-user") as string
-    )?.access;
-
-    try {
-      const { data } = await axios({
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}activity_log/`,
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      setActivity(data.results);
-      // console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getActivities();
-  }, []);
-  
+  const { activity, loading } = useDashboardActivities();
 
   return (
     <div className="flex flex-col gap-4 p-6 bg-white card-shadow rounded-lg h-[60vh] overflow-auto">
@@ -84,24 +54,22 @@ export const DashboardActivities = () => {
                 <h3 className="text-xs font-semibold text-uacs-eneutral-11">
                   {item.activity}
                 </h3>
-               
+
                 <p className="text-uacs-eneutral-8 font-normal text-xs">
                   By{" "}
                   <span className=" underline decoration-inherit ">
                     {item.actor_name}
                   </span>
                 </p>
-             
-              
               </div>
             </div>
-          <p className="text-xs font-medium text-uacs-eneutral-7">{dayjs(item.action_time).fromNow()}</p>
+            <p className="text-xs font-medium text-uacs-eneutral-7">
+              {dayjs(item.action_time).fromNow()}
+            </p>
           </div>
         ))}
       </div>
+      <LoadingOverlay visible={loading} />
     </div>
   );
 };
-
-// border-b border-b-[bg-[#FCF3E8]]
-// pb-2

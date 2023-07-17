@@ -3,23 +3,20 @@ import { clsx } from "@mantine/core";
 import Image from "next/image";
 import { Button } from "@mantine/core";
 
-
 import { GrantAccess } from "@/modals";
-
 
 export const EmptyState = ({
   className,
   btnText,
   onClick,
-  getStaff
+  getStaff,
 }: {
   className?: string;
   btnText: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>
-  getStaff?: any
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  getStaff?: any;
 }) => {
-
-  const [opened, setOpened] = useState(false)
+  const [opened, setOpened] = useState(false);
   return (
     <div
       className={clsx(
@@ -43,11 +40,19 @@ export const EmptyState = ({
             A list of staff with access to service providers will appear here
           </p>
         </div>
-
-        <Button onClick={onClick} className="bg-uacs-ared-7 rounded-lg hover:bg-red-800 h-[46px]  text-white text-sm  w-fit ">
+        <Button
+          onClick={onClick}
+          className="!bg-uacs-ared-7 !rounded-lg hover:!bg-red-800 !h-[46px]  !text-white !text-sm  !w-fit "
+        >
           {btnText}
         </Button>
-        <GrantAccess getStaff={getStaff} opened={opened} setOpened={setOpened}/>
+        {opened ? (
+          <GrantAccess
+            getStaff={getStaff}
+            opened={opened}
+            setOpened={setOpened}
+          />
+        ) : null}
       </div>
     </div>
   );

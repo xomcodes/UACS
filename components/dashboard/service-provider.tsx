@@ -1,11 +1,10 @@
 import { Dots } from "@/service-provider";
-import { usePortal } from "@ibnlanre/portal";
+import React from "react";
 import { LoadingOverlay } from "@mantine/core";
-import axios from "axios";
 import { ArrowRight2 } from "iconsax-react";
-import Image from "next/image";
 import Link from "next/link";
-import React, {useState, useEffect } from "react";
+
+
 import useDashboardSp from "../../hooks/use-dashboard-sp";
 
 

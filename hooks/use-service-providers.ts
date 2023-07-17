@@ -43,7 +43,7 @@ function useServiceProviders() {
   useEffect(() => {
     getSp();
   }, []);
-  return { sp, getSp };
+  return { sp, getSp,loading };
 }
 
 export default useServiceProviders;

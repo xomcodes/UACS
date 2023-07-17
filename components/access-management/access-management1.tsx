@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { AccessTable1 } from "./accesstable1";
 import { SearchNormal1 } from "iconsax-react";
 import { Button, LoadingOverlay } from "@mantine/core";
-import Image from "next/image";
-import { GrantAccess, ModifyAccess } from "@/modals";
 import axios from "axios";
+import Image from "next/image";
+
+import { AccessTable1 } from "./accesstable1";
+import { GrantAccess, ModifyAccess } from "@/modals";
 import { EmptyState } from "./empty-state";
 
 export interface IAccessManager {
@@ -47,11 +48,11 @@ export const AccessManagement1 = () => {
     getStaff();
   }, []);
   return (
-    <div className="pt-8 px-[clamp(0.75rem,1.6vw,1.5rem)] flex flex-col gap-10">
+    <div className="pt-8 overflow-auto flex-1 px-[clamp(0.75rem,1.6vw,1.5rem)] flex flex-col gap-10">
       <div className="flex flex-col gap-10">
         <div className="flex justify-between items-center ">
           <h3 className="text-base font-semibold text-uacs-eneutral-11">
-            Staff with access (2000)
+            Staff with access ({accessManager.length})
           </h3>
 
           <div className="flex gap-4">
@@ -80,16 +81,17 @@ export const AccessManagement1 = () => {
               }
               className="bg-uacs-ared-7 rounded-lg hover:bg-red-800 h-10 w-[162px] "
             >
-              {" "}
               Grant Access
             </Button>
           </div>
           {/* <ModifyAccess opened={opened} setOpened={setOpened}/> */}
-          <GrantAccess
-            getStaff={getStaff}
-            opened={opened}
-            setOpened={setOpened}
-          />
+          {opened ? (
+            <GrantAccess
+              getStaff={getStaff}
+              opened={opened}
+              setOpened={setOpened}
+            />
+          ) : null}
         </div>
       </div>
       {accessManager?.length ? (

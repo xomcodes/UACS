@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
-
-import { People } from 'iconsax-react'
-import { ArrowRightIcon } from './arrow-right-icon'
-import Link from 'next/link'
-import axios from 'axios'
 import { usePortal } from '@ibnlanre/portal'
 import { LoadingOverlay } from '@mantine/core'
+import { People } from 'iconsax-react'
+import Link from 'next/link'
+import axios from 'axios'
+
+
+import { ArrowRightIcon } from './arrow-right-icon'
 
 
 export const AccessCard2 = () => {
+  
   const [staffAccess, setStaffAccess] = usePortal<{staff_with_access:number} | null>('sp-access',null)
   const [loading, setLoading] = useState(false)
 
@@ -28,7 +30,6 @@ export const AccessCard2 = () => {
         },
       });
       setLoading(false)
-      // console.log(data);
       setStaffAccess(data)
     } catch (error) {
       console.log(error);
@@ -36,7 +37,6 @@ export const AccessCard2 = () => {
     }
   };
 
-  // console.log(staffAccess)
 
   useEffect(() => {
     getCount();

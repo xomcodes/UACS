@@ -1,23 +1,23 @@
 import React from "react";
-import Image from "next/image";
-import { ArrowDown2, ArrowLeft2, NotificationBing } from "iconsax-react";
+import { NotificationBing } from "iconsax-react";
 import { usePortal } from "@ibnlanre/portal";
 
-import { DropDown } from "./drop-down";
 import { IAuthUser } from "../../pages/sign-in";
 import { ProfilePopUp } from "@/pop-ups";
+
+interface iDashboardHeader {
+  children: React.ReactNode;
+  pages?: string;
+  text: string;
+  icon?: React.ReactNode;
+}
 
 export const DashboardHeader = ({
   children,
   pages,
   text,
   icon,
-}: {
-  children: React.ReactNode;
-  pages?: string;
-  text: string;
-  icon?: React.ReactNode;
-}) => {
+}: iDashboardHeader) => {
   // I have already declared the initial value of the portal state in the sign-in page
   // and I have set it to the data i received from my login request. Here I am getting the value
   // with the key (login-user) and it should give me the value I set after my successful login request
@@ -65,7 +65,7 @@ export const DashboardHeader = ({
               </p>
             </div>
             {/* <ArrowDown2 color="#8F8E91"  size='18'/> */}
-            <ProfilePopUp  />
+            <ProfilePopUp />
           </div>
         </div>
       </div>

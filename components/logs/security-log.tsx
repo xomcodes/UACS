@@ -2,20 +2,26 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { LoadingOverlay, Table, clsx } from "@mantine/core";
 
-
 export function SecurityLog() {
- const [security, setSecurity] = useState<{action:string,result:string,serviceProvider:string,timestamp:string[], location:string[], id:number}[]>([])
- const [loading, setLoading] = useState(false)
+  const [security, setSecurity] = useState<
+    {
+      action: string;
+      result: string;
+      serviceProvider: string;
+      timestamp: string[];
+      location: string[];
+      id: number;
+    }[]
+  >([]);
+  const [loading, setLoading] = useState(false);
 
-
- 
   // Send  a Get request
 
   const getSecurity = async () => {
     const accessToken = JSON.parse(
       localStorage.getItem("login-user") as string
     )?.access;
-     setLoading(true)
+    setLoading(true);
     try {
       const { data } = await axios({
         url: `${process.env.NEXT_PUBLIC_BASE_URL}security_log/`,
@@ -24,23 +30,23 @@ export function SecurityLog() {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      setLoading(false)
-      
-      setSecurity(data.results.reduce((acc:any, curr:any) => {
-        acc.push({
-          action : curr?.activity,
-          result : curr?.status,
-          serviceProvider: curr?.service_provider,
-          timestamp: [curr?.date, curr?.time],
-          location: [curr?.location, curr?.ip_address]
-        })
-    return acc
-      }, [])
-      )
+      setLoading(false);
 
+      setSecurity(
+        data.results.reduce((acc: any, curr: any) => {
+          acc.push({
+            action: curr?.activity,
+            result: curr?.status,
+            serviceProvider: curr?.service_provider,
+            timestamp: [curr?.date, curr?.time],
+            location: [curr?.location, curr?.ip_address],
+          });
+          return acc;
+        }, [])
+      );
     } catch (error) {
       console.log(error);
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -48,15 +54,9 @@ export function SecurityLog() {
     getSecurity();
   }, []);
 
-
- 
-
-
   const rows = security.map((element) => (
     <tr key={element?.id} className=" ">
-      <td className="td-name  ">
-        {element?.action} 
-      </td>
+      <td className="td-name  ">{element?.action}</td>
       <td
         className={clsx(
           element.result === "Failed"
@@ -101,7 +101,6 @@ export function SecurityLog() {
     </tr>
   ));
 
-  
   return (
     <Table
       verticalSpacing="sm"

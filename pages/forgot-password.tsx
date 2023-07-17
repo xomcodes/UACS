@@ -5,6 +5,7 @@ import React, { FormEvent, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import {toast} from "react-toastify"
+import Head from "next/head";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -34,6 +35,10 @@ function ForgotPassword() {
   };
 
   return (
+    <>
+     <Head>
+   <title>UACS | Forgot Password</title>
+   </Head>
     <AuthWrapper>
       <div className="flex flex-col gap-10">
         <div className="flex flex-col gap-8">
@@ -89,6 +94,7 @@ function ForgotPassword() {
         <div></div>
       </div>
     </AuthWrapper>
+    </>
   );
 }
 

@@ -1,19 +1,19 @@
-import { Button } from "@/shared";
-import Image from "next/image";
-import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import { InactiveDot } from "./inactive-dot";
-import AccessManagement from "../../pages/access-management";
-import { EmptyState } from "@/access-management";
 import { Copy, Edit2 } from "iconsax-react";
-import { Modal, Switch } from "@mantine/core";
+import { Switch } from "@mantine/core";
+import React, { useState, useEffect } from "react";
+
+
+import { InactiveDot } from "./inactive-dot";
+import { EmptyState } from "@/access-management";
 import { SpOverviewTable } from "./sp-overview-table";
 import { AddMember } from "@/modals";
-import useSpDetails from "../../hooks/use-sp-details";
+import { ISPDetails } from "../../hooks/use-sp-details";
 
-export const SpOverviewEmpty = () => {
+
+export const SpOverviewEmpty = ({ spDetails, getSp,}: {spDetails: ISPDetails, getSp: () => void}) => {
+
   const [opened, setOpened] = useState(false);
-  const { spDetails, getSp } = useSpDetails();
+  
 
   return (
     <div className="flex flex-col gap-10 flex-1">
@@ -138,6 +138,7 @@ export const SpOverviewEmpty = () => {
             />
           </div>
         )}
+        
       </div>
      {opened ? 
       <AddMember getSp={getSp} opened={opened} setOpened={setOpened} />

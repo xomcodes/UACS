@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import Link from "next/link";
 import LogoSmall from "@/shared/logo-small";
 import { AuthContext, UserType } from "@/context/auth-provider";
+import Head from "next/head";
 
 
 
@@ -82,7 +83,10 @@ function SignIn() {
   };
 
   return (
-    
+    <>
+<Head>
+   <title>UACS | Sign In</title>
+   </Head>
     <section
       className="bg-cover bg-[top_center] bg-no-repeat h-screen"
       style={{ backgroundImage: "url('/sign-in/bg-sign-in.png')" }}
@@ -135,7 +139,7 @@ function SignIn() {
                         root: "flex flex-col gap-5",
                         label: "text-uacs-primary-90 text-sm font-normal",
                         input:
-                          "rounded-lg border text-[back] h-[54px] text-black border-uacs-beerus-100 bg-[#F7F8F9] p-4 placeholder: text-uacs-primary-40 placeholder:font-normal placeholder:text-xs outline-none",
+                          "rounded-lg border h-[54px] text-black border-uacs-beerus-100 bg-[#F7F8F9] p-4 placeholder: text-uacs-primary-40 placeholder:font-normal placeholder:text-xs outline-none",
                       }}
                     />
                   </span>
@@ -151,13 +155,13 @@ function SignIn() {
                       root: "flex flex-col gap-5",
                       label: "text-uacs-primary-90 text-sm font-normal",
                       input:
-                        "border-y  text-[back] border-l rounded-lg h-[54px] border-uacs-beerus-100 bg-[#F7F8F9] placeholder:text-uacs-primary-40 placeholder:font-normal placeholder:text-xs outline-none",
+                        "border-y  text-[black] border-l rounded-lg h-[54px] border-uacs-beerus-100 bg-[#F7F8F9] placeholder:text-uacs-primary-40 placeholder:font-normal placeholder:text-xs outline-none",
                       innerInput: "h-[54px]",
                     }}
                   />
                 </div>
 
-                <div className="flex flex-col gap-[30px] justify-between">
+                <div className="flex flex-col gap-[30px] justify-between ">
              
                    <Link href='/forgot-password' className=" self-end text-[#C81107] font-semibold text-sm">
                 
@@ -184,6 +188,8 @@ function SignIn() {
         </div>
       </div>
     </section>
+    </>
+    
   );
 }
 

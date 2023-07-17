@@ -1,54 +1,12 @@
-import React, { useEffect, useState } from "react";
-
 import Image from "next/image";
-
 import { Level, People } from "iconsax-react";
-import axios from "axios";
-import { usePortal } from "@ibnlanre/portal";
 import { LoadingOverlay } from "@mantine/core";
+
 import useAccessCard1 from "../../hooks/use-access-card1";
 
 export const AccessCard1 = () => {
-  const [totalSp, setTotalSp] = usePortal<number>("total-sp")
-  const [loading, setLoading] = useState(false);
+  const { staffAccess, loading, totalSp } = useAccessCard1();
 
-
-  // MOVE BELOW TO A CUSTOM HOOK
-  // const [staffAccess, setStaffAccess] = usePortal<{ inactive_sps: number }>(
-  //   "sp-access"
-  // );
-  // console.log(totalSp)
-
-  //  Function to get inactive sp's
-  // const getCount = async () => {
-  //   const accessToken = JSON.parse(
-  //     localStorage.getItem("login-user") as string
-  //   )?.access;
-
-  //   setLoading(true)
-
-  //   try {
-  //     const { data } = await axios({
-  //       url: `${process.env.NEXT_PUBLIC_BASE_URL}count/`,
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     });
-  //     setLoading(false)
-  //     setStaffAccess(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //     setLoading(false)
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getCount();
-  // }, []);
-
-  
-   const {staffAccess} = useAccessCard1()
   return (
     <div
       className="flex-1  rounded-lg p-6    bg-no-repeat bg-[top_center] "
@@ -86,7 +44,7 @@ export const AccessCard1 = () => {
           </p>
         </div>
       </div>
-      <LoadingOverlay visible={loading}/>
+      <LoadingOverlay visible={loading} />
     </div>
   );
 };

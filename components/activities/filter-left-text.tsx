@@ -1,6 +1,7 @@
 import React from 'react'
 import { ArrowLeft2 } from 'iconsax-react'
 
+
 export const FilterLeftText = () => {
   return (
     <div className='flex gap-[18px] items-center'>

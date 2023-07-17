@@ -168,7 +168,7 @@ export const CreateSp = ({
         header: "px-6 pt-8 pb-2",
         body: "px-6 pb-8 flex-1 flex",
         title: "text-[#54565B] font-medium text-xl",
-        content: "rounded-[20px] flex flex-col",
+        content: "rounded-[20px] scroll-bar-hidden flex flex-col",
       }}
     >
       <form
@@ -232,7 +232,7 @@ export const CreateSp = ({
                 }
                 id="file-input"
                 hidden
-                accept="image/"
+                accept="image/*"
               />
             </label>
           </div>
