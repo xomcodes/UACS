@@ -1,13 +1,10 @@
-
-import {  useState } from "react";
-import { LoadingOverlay, Popover, Table, clsx } from "@mantine/core";
-import { ArrowDown, ArrowDown2, ArrowUp } from "iconsax-react";
+import { useState } from "react";
+import { Table } from "@mantine/core";
+import { ArrowDown, ArrowUp } from "iconsax-react";
 
 import { ResetAccount } from "@/modals/reset-account";
 import { ModifyRevoke } from "@/pop-ups/modify-revoke";
 import { IAccessManager } from "./access-management1";
-
-
 
 export function AccessTable1({
   accessManager,
@@ -52,52 +49,52 @@ export function AccessTable1({
   ));
 
   return (
-    <Table
-      verticalSpacing="sm"
-      horizontalSpacing="xs"
-      className="bg-white rounded-lg card-shadow"
-    >
-      <thead className="!rounded-t-lg">
-        <tr className=" bg-uacs-gray-50 ">
-          <th className=" th-sp">
-            <span className="flex gap-2 items-center">
-              <span>Name</span>
-              <span className="flex">
-                <ArrowUp size="12" color="#5D5B60" variant="Outline" />
-                <ArrowDown
-                  size="12"
-                  color="#5D5B60"
-                  variant="Outline"
-                  className="-ml-1"
-                />
+    <div className="overflow-auto">
+      <Table
+        verticalSpacing="sm"
+        horizontalSpacing="xs"
+        className="bg-white rounded-lg card-shadow"
+      >
+        <thead className="!rounded-t-lg">
+          <tr className=" bg-uacs-gray-50 ">
+            <th className=" th-sp">
+              <span className="flex gap-2 items-center">
+                <span>Name</span>
+                <span className="flex">
+                  <ArrowUp size="12" color="#5D5B60" variant="Outline" />
+                  <ArrowDown
+                    size="12"
+                    color="#5D5B60"
+                    variant="Outline"
+                    className="-ml-1"
+                  />
+                </span>
               </span>
-            </span>
-          </th>
+            </th>
 
-          <th className="th-sp ">
-            <span className="flex gap-2 items-center">
-              <span>Email Address</span>
-              <span className="flex">
-                <ArrowUp size="12" color="#BF2018" variant="Outline" />
-                <ArrowDown
-                  size="12"
-                  color="#BF2018"
-                  variant="Outline"
-                  className="-ml-1"
-                />
+            <th className="th-sp ">
+              <span className="flex gap-2 items-center">
+                <span>Email Address</span>
+                <span className="flex">
+                  <ArrowUp size="12" color="#BF2018" variant="Outline" />
+                  <ArrowDown
+                    size="12"
+                    color="#BF2018"
+                    variant="Outline"
+                    className="-ml-1"
+                  />
+                </span>
               </span>
-            </span>
-          </th>
-          <th className="th-sp ">Designation</th>
-          <th className="th-sp">Service Provider</th>
+            </th>
+            <th className="th-sp ">Designation</th>
+            <th className="th-sp">Service Provider</th>
 
-          <th className=" th-sp">Access Control</th>
-        </tr>
-      </thead>
-      <tbody>{rows}</tbody>
-      {/* On Click on Modify on this day leads to Modify access modal */}
-      {/* <ModifyAccess opened={opened} setOpened={setOpened}/> */}
-      <ResetAccount opened={opened} setOpened={setOpened} />
-    </Table>
+            <th className=" th-sp">Access Control</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+        <ResetAccount opened={opened} setOpened={setOpened} />
+      </Table>
+    </div>
   );
 }

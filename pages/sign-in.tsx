@@ -1,18 +1,16 @@
 import Image from "next/image";
 import { FormEvent, useContext, useState } from "react";
 import { useRouter } from "next/router";
-
 import { Button, Loader, PasswordInput, TextInput } from "@mantine/core";
 import axios from "axios";
 import { usePortal } from "@ibnlanre/portal";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
-
 import Link from "next/link";
+import Head from "next/head";
+
 import LogoSmall from "@/shared/logo-small";
 import { AuthContext, UserType } from "@/context/auth-provider";
-import Head from "next/head";
-import { errorNotification } from "../utils/notification";
 import { handleError } from "../utils/error-handler";
 
 

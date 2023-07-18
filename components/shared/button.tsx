@@ -6,14 +6,13 @@ export const Button = ({
   type,
   size,
   className,
-  btntext
+  btntext,
 }: {
   text?: string;
   type: "primary" | "outline";
   size?: "sm" | "md" | "lg";
-  className?: string
-  btntext? : any
-
+  className?: string;
+  btntext?: any;
 }) => {
   return (
     <button
@@ -26,7 +25,8 @@ export const Button = ({
           : size === "md"
           ? "py-[10px] px-[14px]"
           : "p-3 px-5",
-        "rounded-lg font-medium font-[Swizer] w-fit ", {className}
+        "rounded-lg font-medium font-[Swizer] w-fit ",
+        { className }
       )}
     >
       {text} {btntext}

@@ -22,7 +22,6 @@ export const ProfilePage = () => {
               Joshua Simire
             </h2>
             <p className=" text-eneutral-7 text-base font-medium">
-              
               Analyst, MIS
             </p>
           </div>

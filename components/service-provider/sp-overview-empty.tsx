@@ -1,6 +1,6 @@
 import { Copy, Edit2 } from "iconsax-react";
 import { Switch } from "@mantine/core";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { InactiveDot } from "./inactive-dot";
 import { EmptyState } from "@/access-management";
@@ -16,7 +16,7 @@ export const SpOverviewEmpty = ({
   getSp: () => void;
 }) => {
   const [opened, setOpened] = useState(false);
-  console.log(spDetails)
+  console.log(spDetails);
 
   return (
     <div className="flex flex-col gap-10 flex-1">
@@ -73,21 +73,20 @@ export const SpOverviewEmpty = ({
                 <h2 className=" text-uacs-primary-70 font-normal text-base">
                   Status
                 </h2>
-                {/* {
-                  spDetails?.status ? 
-                } */}
-                {spDetails?.is_active === true ?
-                <div className="flex gap-1 px-2 rounded-lg bg-[#E7F9F0] items-center max-w-fit">
-                  <InactiveDot color="#0DBF66" />
-                  <p className="text-[#076D3A] text-sm font-normal">Active</p>
-                </div>
-
-                :
-                <div className="flex gap-1 px-2 rounded-lg bg-[#FDEEEE] items-center max-w-fit">
-                  <InactiveDot color="#ED5556" />
-                  <p className="text-[#873031] text-sm font-normal">Inactive</p>
-                </div>
-                }
+               
+                {spDetails?.is_active === true ? (
+                  <div className="flex gap-1 px-2 rounded-lg bg-[#E7F9F0] items-center max-w-fit">
+                    <InactiveDot color="#0DBF66" />
+                    <p className="text-[#076D3A] text-sm font-normal">Active</p>
+                  </div>
+                ) : (
+                  <div className="flex gap-1 px-2 rounded-lg bg-[#FDEEEE] items-center max-w-fit">
+                    <InactiveDot color="#ED5556" />
+                    <p className="text-[#873031] text-sm font-normal">
+                      Inactive
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
 

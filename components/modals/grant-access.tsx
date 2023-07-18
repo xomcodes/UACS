@@ -1,26 +1,20 @@
+import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import {
   Button,
-  Group,
-  Image,
   Loader,
   LoadingOverlay,
   Modal,
   Select,
   Stepper,
-  TextInput,
 } from "@mantine/core";
 import { ArrowLeft2 } from "iconsax-react";
+import { toast } from "react-toastify";
 
 import { Close } from "./icons";
-import SelectMemebersStaff from "./select-members-staff";
-import { SelectSp } from "./select-sp";
 import useAddMember from "../../hooks/use-add-member";
 import useServiceProviders from "../../hooks/use-service-providers";
-import { toast } from "react-toastify";
-import axios from "axios";
-import { errorNotification } from "../../utils/notification";
 import { handleError } from "../../utils/error-handler";
 
 const staffList = [
@@ -100,7 +94,7 @@ export const GrantAccess = ({ opened, getStaff, setOpened }: IGrantAccess) => {
       setOpened(false);
       setRequestLoading(false);
     } catch (error: any) {
-      handleError(error)
+      handleError(error);
       setRequestLoading(false);
     }
   };
@@ -301,9 +295,6 @@ export const GrantAccess = ({ opened, getStaff, setOpened }: IGrantAccess) => {
           >
             Prev
           </Button>
-          {/* <Button variant="default" onClick={prevStep}>Back</Button>
-        <Button onClick={nextStep}>Next step</Button> */}
-
           <Button
             onClick={active === 2 ? grantAccess : nextStep}
             disabled={requestLoading}
@@ -318,7 +309,7 @@ export const GrantAccess = ({ opened, getStaff, setOpened }: IGrantAccess) => {
             {active === 2 ? (
               requestLoading ? (
                 <span className="flex text-white items-center gap-1">
-                   Please wait... <Loader size='sm'  />
+                  Please wait... <Loader size="sm" />
                 </span>
               ) : (
                 "Proceed"
@@ -326,8 +317,6 @@ export const GrantAccess = ({ opened, getStaff, setOpened }: IGrantAccess) => {
             ) : (
               "Next"
             )}
-
-          
           </Button>
         </div>
       </div>

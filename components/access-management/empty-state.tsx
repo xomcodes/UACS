@@ -5,26 +5,28 @@ import { Button } from "@mantine/core";
 
 import { GrantAccess } from "@/modals";
 
+interface IEmpty {
+  className?: string;
+  btnText: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  getStaff?: any;
+}
+
 export const EmptyState = ({
   className,
   btnText,
   onClick,
   getStaff,
-}: {
-  className?: string;
-  btnText: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  getStaff?: any;
-}) => {
+}: IEmpty) => {
   const [opened, setOpened] = useState(false);
+
   return (
     <div
       className={clsx(
-        "  flex justify-center items-center bg-white h-full rounded-lg",
+        "flex justify-center items-center bg-white h-full rounded-lg",
         className
       )}
     >
-      {/* Pasing classname as prop is having issues here. So i am suppoesed to to remove px-[clamp(....so it doesnt issues for othe pages)] bg white  h-85 */}
       <div className="flex flex-col gap-8 items-center">
         <Image
           src="/access-m-images/Vector.png"

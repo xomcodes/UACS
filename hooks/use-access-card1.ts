@@ -1,48 +1,45 @@
-import React, {useState, useEffect} from 'react'
-import { usePortal } from '@ibnlanre/portal';
-import axios from 'axios';
-import { errorNotification } from '../utils/notification';
-import { handleError } from '../utils/error-handler';
+import React, { useState, useEffect } from "react";
+import { usePortal } from "@ibnlanre/portal";
+import axios from "axios";
+import { handleError } from "../utils/error-handler";
 
 function useAccessCard1() {
   const [totalSp, setTotalSp] = usePortal<number>("total-sp");
- 
 
-    const [staffAccess, setStaffAccess] = usePortal<{ inactive_sps: number }>(
-        "sp-access"
-      );
-      const [loading, setLoading] = useState(false)
+  const [staffAccess, setStaffAccess] = usePortal<{ inactive_sps: number }>(
+    "sp-access"
+  );
+  const [loading, setLoading] = useState(false);
 
-    
-      //  Function to get inactive sp's
-      const getCount = async () => {
-        const accessToken = JSON.parse(
-          localStorage.getItem("login-user") as string
-        )?.access;
-    
-        setLoading(true)
-    
-        try {
-          const { data } = await axios({
-            url: `${process.env.NEXT_PUBLIC_BASE_URL}count/`,
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          });
-          setLoading(false)
-          setStaffAccess(data);
-        } catch (error : any) {
-          handleError(error)
-          setLoading(false)
-        }
-      };
-    
-      useEffect(() => {
-        getCount();
-      }, []);
+  //  Function to get inactive sp's
+  const getCount = async () => {
+    const accessToken = JSON.parse(
+      localStorage.getItem("login-user") as string
+    )?.access;
 
-  return {staffAccess, loading, totalSp}
+    setLoading(true);
+
+    try {
+      const { data } = await axios({
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}count/`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      setLoading(false);
+      setStaffAccess(data);
+    } catch (error: any) {
+      handleError(error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getCount();
+  }, []);
+
+  return { staffAccess, loading, totalSp };
 }
 
-export default useAccessCard1
+export default useAccessCard1;

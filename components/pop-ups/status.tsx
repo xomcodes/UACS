@@ -16,10 +16,7 @@ export const Status = () => {
       <Popover.Target>{/* <Button>Toggle popover</Button> */}</Popover.Target>
       <Popover.Dropdown>
         <div className="flex flex-col cursor-pointer">
-          <div
-            className=" flex gap-2 py-2 px-4"
-            // onClick={() => }
-          >
+          <div className=" flex gap-2 py-2 px-4">
             <AllSp />
             <h2 className=" text-uacs-eneutral-9 text-xs font-medium">
               All Service Providers

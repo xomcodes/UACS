@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
-import { errorNotification } from "../utils/notification";
+
 import { handleError } from "../utils/error-handler";
+
  export interface ISPDetails {
   id: number;
   url: string;

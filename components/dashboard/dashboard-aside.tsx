@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Briefcase, Home3, LogoutCurve, People, UserEdit } from "iconsax-react";
 import Link from "next/link";
 import { Button, clsx } from "@mantine/core";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { Briefcase, Home3, LogoutCurve, People, UserEdit } from "iconsax-react";
 
 import { CreateSp } from "@/modals";
 import { AuthContext, UserType } from "@/context/auth-provider";
@@ -14,7 +14,6 @@ export const DashboardAside = () => {
   const { pathname, push } = useRouter();
   const { setIsLoggedIn } = useContext(AuthContext) as UserType;
 
-  
   const asideList = [
     {
       img: (
@@ -124,7 +123,6 @@ export const DashboardAside = () => {
               !item.children ? (
                 <Link href={item.link} key={item.name}>
                   <div
-                    
                     className={clsx(
                       pathname.includes(item.link)
                         ? "text-uacs-ared-7"
@@ -140,7 +138,7 @@ export const DashboardAside = () => {
                 </Link>
               ) : (
                 <div
-                key={item.name}
+                  key={item.name}
                   className={clsx(
                     pathname.includes("logs")
                       ? "text-uacs-ared-7"

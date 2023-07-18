@@ -143,7 +143,7 @@ export const Active = ({ spID, getSp, spStatus, sp }: iActive) => {
               )}
             </div>
             <div
-              // onClick={openDeleteModal}
+             
               className=" flex gap-2 py-[10px] px-4"
             >
               <Trash size="16" color="#BF2018" variant="Bold" />

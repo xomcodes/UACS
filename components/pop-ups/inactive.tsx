@@ -2,7 +2,6 @@ import React from "react";
 import { Button, Popover } from "@mantine/core";
 import { Add, Edit, Eye } from "iconsax-react";
 
-
 import { Activate } from "./icons/activate";
 
 export const Inactive = () => {
@@ -18,10 +17,7 @@ export const Inactive = () => {
       </Popover.Target>
       <Popover.Dropdown>
         <div className="flex flex-col cursor-pointer rounded-lg ">
-          <div
-            className=" flex gap-2 py-[10px] px-4"
-            //   onClick={() => setOpen(false)}
-          >
+          <div className=" flex gap-2 py-[10px] px-4">
             <Edit size="16" color="#5E606A" variant="Outline" />
             <h2 className=" text-uacs-eneutral-8 text-xs font-medium">
               Update

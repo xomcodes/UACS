@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { Button, Modal, TextInput } from "@mantine/core";
+import Image from "next/image";
+import { Button, TextInput } from "@mantine/core";
 import { SearchNormal1 } from "iconsax-react";
+
 import { FilterIcon } from "@/activities/filter-icon";
 import { CreateSp } from "@/modals";
-import Image from "next/image";
 import { Active } from "@/pop-ups";
 
 export interface IServiceProvider {
@@ -15,13 +16,17 @@ export interface IServiceProvider {
   test_picture_url: string;
   id: number;
   is_active: boolean;
-  picture: string
+  picture: string;
 }
 
-
-const avatarColors =[
- '#FFC700', '#009EF7','#F1416C', '#181C32', '#181C32', '#BF2018'
-]
+const avatarColors = [
+  "#FFC700",
+  "#009EF7",
+  "#F1416C",
+  "#181C32",
+  "#181C32",
+  "#BF2018",
+];
 
 export const SpList1 = ({
   sp,
@@ -31,7 +36,7 @@ export const SpList1 = ({
   getSp: () => void;
 }) => {
   const [opened, setOpened] = useState(false);
-  
+
   return (
     <div className="pt-8 px-[clamp(0.75rem,1.6vw,1.5rem)] flex flex-col gap-10 overflow-auto ">
       <div className="flex flex-col gap-10 overflow-auto">
@@ -91,12 +96,11 @@ export const SpList1 = ({
           {sp?.map((item) => (
             <div
               key={item.id}
-              className=" grid grid-cols-[1fr,300px] justify-center bg-white rounded-[20px] border-[0.3px]  border-[#EBEBEB]  gap-20 p-5 sp-card-shadow "
+              className=" grid grid-cols-[1fr,220px] justify-center bg-white rounded-[20px] border-[0.3px]  border-[#EBEBEB]  gap-20 p-5 sp-card-shadow "
             >
               {/* left */}
               <div className="grid grid-cols-[60px,1fr] gap-8 items-center">
                 <img
-                  // src="/comx-round.svg"
                   src={item.test_picture_url}
                   width={80}
                   height={80}
@@ -118,7 +122,6 @@ export const SpList1 = ({
                       URL
                     </p>
                     <Link href="www.comx.afexnigeria.com">
-                      {" "}
                       <h2
                         className=" text-uacs-eneutral-8 font-bold text-sm w-[160px] "
                         style={{ wordBreak: "break-word" }}
@@ -156,28 +159,32 @@ export const SpList1 = ({
 
                 <div className="flex  gap-6 justify-end  ">
                   <div className="flex">
-                    {item?.staffs_with_permission?.map((item, id) => (
-                      id < 6 ?
-                      <div
-                        key={id}
-                        style={{background: avatarColors[id]}}
-                        className="border-2 ml-[-10px] border-white h-9 w-9 py-[9.5px] px-[12.6px] flex justify-center rounded-full items-center"
-                      >
-                        <h2 className="text-white text-sm font-semibold">
-                          {item?.first_name?.[0]}
-                        </h2>
-                      </div>
-                      : null
-                    ))}
+                    {item?.staffs_with_permission?.map((item, id) =>
+                      id < 6 ? (
+                        <div
+                          key={id}
+                          style={{ background: avatarColors[id] }}
+                          className="border-2 ml-[-10px] border-white h-9 w-9 py-[9.5px] px-[12.6px] flex justify-center rounded-full items-center"
+                        >
+                          <h2 className="text-white text-sm font-semibold">
+                            {item?.first_name?.[0]}
+                          </h2>
+                        </div>
+                      ) : null
+                    )}
                   </div>
 
-                  <Active getSp={getSp} sp={item} spStatus={item?.is_active} spID={item?.id} />
+                  <Active
+                    getSp={getSp}
+                    sp={item}
+                    spStatus={item?.is_active}
+                    spID={item?.id}
+                  />
                 </div>
               </div>
             </div>
           ))}
         </div>
-        {/* Sp Cards */}
       </div>
     </div>
   );

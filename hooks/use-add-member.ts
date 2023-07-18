@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { errorNotification } from "../utils/notification";
 import { handleError } from "../utils/error-handler";
 
 interface IAdd {
@@ -42,13 +41,16 @@ function useAddMember() {
         data.results.reduce((acc: any, curr) => {
           acc.push({
             label: `${curr.first_name} ${curr.last_name}`,
-            value: JSON.stringify({name: `${curr.first_name} ${curr.last_name}`, id: curr.id}),
+            value: JSON.stringify({
+              name: `${curr.first_name} ${curr.last_name}`,
+              id: curr.id,
+            }),
           });
           return acc;
         }, [])
       );
     } catch (error: any) {
-      handleError(error)
+      handleError(error);
     }
   };
 

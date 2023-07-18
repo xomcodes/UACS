@@ -51,7 +51,6 @@ export const DashboardHeader = ({
 
           <div className="flex relative gap-4 items-center ">
             <img
-              // src="/profile-img/image 2.svg"
               src={authUser?.profile_picture}
               alt="profile-pix"
               className="h-[52px] object-cover w-[52px] rounded-full"
@@ -64,7 +63,6 @@ export const DashboardHeader = ({
                 Admin
               </p>
             </div>
-            {/* <ArrowDown2 color="#8F8E91"  size='18'/> */}
             <ProfilePopUp />
           </div>
         </div>

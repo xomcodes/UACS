@@ -6,15 +6,15 @@ import {
   Modal,
   TextInput,
 } from "@mantine/core";
-import React, { FormEvent, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { Gallery } from "iconsax-react";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { toast } from "react-toastify";
 
 import { Close } from "./icons/close";
 import { SpInfoIcon } from "./icons";
-import { errorNotification } from "../../utils/notification";
 import { handleError } from "../../utils/error-handler";
+
 
 export const CreateSp = ({
   opened,
@@ -69,7 +69,7 @@ export const CreateSp = ({
       setCreateSp(intialDetails);
       console.log(data);
     } catch (error: any) {
-      handleError(error)
+      handleError(error);
       setLoading(false);
     }
   };
@@ -100,8 +100,8 @@ export const CreateSp = ({
       setLoading(false);
       if (getSp) getSp();
       setCreateSp(intialDetails);
-    } catch (error :any) {
-      handleError(error)
+    } catch (error: any) {
+      handleError(error);
       setLoading(false);
     }
   };
@@ -128,7 +128,7 @@ export const CreateSp = ({
       });
       setImage(data?.test_picture_url);
     } catch (error: any) {
-      handleError(error)
+      handleError(error);
       setLoadingDetails(false);
     }
   };

@@ -7,7 +7,6 @@ import axios from 'axios'
 
 
 import { ArrowRightIcon } from './arrow-right-icon'
-import { errorNotification } from '../../utils/notification'
 import { handleError } from '../../utils/error-handler'
 
 

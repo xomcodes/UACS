@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Level, People } from "iconsax-react";
+import { Level} from "iconsax-react";
 import { LoadingOverlay } from "@mantine/core";
 
 import useAccessCard1 from "../../hooks/use-access-card1";

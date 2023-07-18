@@ -4,9 +4,8 @@ import { LoadingOverlay, Table } from "@mantine/core";
 import { ArrowDown, ArrowUp } from "iconsax-react";
 import dayjs from "dayjs";
 import axios from "axios";
-import { errorNotification } from "../../utils/notification";
-import { handleError } from "../../utils/error-handler";
 
+import { handleError } from "../../utils/error-handler";
 
 interface IActivitiesTable {
   activity: "string";
@@ -39,7 +38,7 @@ export function ActivitiesTable() {
       setActivity(data.results);
       setLoading(false);
     } catch (error: any) {
-      handleError(error)
+      handleError(error);
       setLoading(false);
     }
   };
@@ -48,16 +47,12 @@ export function ActivitiesTable() {
     getActivities();
   }, []);
 
-
   const rows = activity.map((element) => (
     <tr key={element.id} className=" ">
       <td className="td-name  ">{element.actor_name}</td>
       <td className="td-name  ">{element.activity}</td>
       <td className="td-name ">{element.date}</td>
       <td className="td-name">{element.time}</td>
-      {/* <td className="td-name">
-        {element.time ? dayjs(element.time).format("h:mm A") : "--"}
-      </td> */}
     </tr>
   ));
 

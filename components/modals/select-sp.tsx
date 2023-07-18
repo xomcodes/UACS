@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from "react";
-
-import { Select, TextInput } from "@mantine/core";
+import { Select } from "@mantine/core";
 
 import { Close } from "./icons";
 import useServiceProviders from "../../hooks/use-service-providers";
-
-const providerList = [
-  "ComX Admin",
-  "WorkBench",
-  " ECN",
-  "Cuddie Admin",
-  "Bank X",
-  " UACS",
-  "  Xpert Card",
-  "AFEX ATS",
-];
 
 export function SelectSp({ setSelectedSP, selectedSP }: any) {
   const { sp } = useServiceProviders();
@@ -62,7 +50,9 @@ export function SelectSp({ setSelectedSP, selectedSP }: any) {
             <p className="text-sm font-medium text-[#4A4C58]">{item.name}</p>
             <Close
               onClick={() => {
-                const filtered = setSelectedSP.filter((el: any) => el.id !== item.id);
+                const filtered = setSelectedSP.filter(
+                  (el: any) => el.id !== item.id
+                );
                 setSelectedSP(filtered);
               }}
               color="#C1C2C6"

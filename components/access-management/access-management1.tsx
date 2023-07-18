@@ -5,9 +5,8 @@ import axios from "axios";
 import Image from "next/image";
 
 import { AccessTable1 } from "./accesstable1";
-import { GrantAccess, ModifyAccess } from "@/modals";
+import { GrantAccess } from "@/modals";
 import { EmptyState } from "./empty-state";
-import { errorNotification } from "../../utils/notification";
 import { handleError } from "../../utils/error-handler";
 
 export interface IAccessManager {
@@ -41,7 +40,7 @@ export const AccessManagement1 = () => {
       setLoading(false);
       setAccessManager(data.results);
     } catch (error: any) {
-      handleError(error)
+      handleError(error);
       setLoading(false);
     }
   };
@@ -86,7 +85,7 @@ export const AccessManagement1 = () => {
               Grant Access
             </Button>
           </div>
-          {/* <ModifyAccess opened={opened} setOpened={setOpened}/> */}
+
           {opened ? (
             <GrantAccess
               getStaff={getStaff}

@@ -1,9 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-
 import LogoSmall from "@/shared/logo-small";
-
 
 export const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -40,7 +38,7 @@ export const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
             </div>
 
             <div className=" bg-white sign-in-shadow  rounded-[16px] min-w-[330px] w-[40%] p-10 max-[700px]:p-5 flex flex-col gap-[70px] items-center max-w-[450px]">
-                <h2 className="text-[#C81107] text-xl font-semibold">AFEX SSO</h2>
+              <h2 className="text-[#C81107] text-xl font-semibold">AFEX SSO</h2>
               {children}
             </div>
           </div>

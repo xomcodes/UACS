@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { LoadingOverlay, Table, clsx } from "@mantine/core";
-import { errorNotification } from "../../utils/notification";
+
 import { handleError } from "../../utils/error-handler";
 
 export function SecurityLog() {
@@ -18,7 +18,6 @@ export function SecurityLog() {
   const [loading, setLoading] = useState(false);
 
   // Send  a Get request
-
   const getSecurity = async () => {
     const accessToken = JSON.parse(
       localStorage.getItem("login-user") as string
@@ -47,7 +46,7 @@ export function SecurityLog() {
         }, [])
       );
     } catch (error: any) {
-      handleError(error)
+      handleError(error);
       setLoading(false);
     }
   };
@@ -60,9 +59,10 @@ export function SecurityLog() {
     <tr key={element?.id}>
       <td className="td-name  ">{element?.action}</td>
       <td
-        className={clsx(element.result === "Success"
-        ? "!text-[#30AD74]"
-        : "text-[#BF2018]", "!font-[Switzer] !font-normal !border-t !border-[#f5f5f5] !text-[0.875rem]")}
+        className={clsx(
+          element.result === "Success" ? "!text-[#30AD74]" : "text-[#BF2018]",
+          "!font-[Switzer] !font-normal !border-t !border-[#f5f5f5] !text-[0.875rem]"
+        )}
       >
         {element?.result}
       </td>

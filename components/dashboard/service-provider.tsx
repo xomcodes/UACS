@@ -1,19 +1,14 @@
-import { Dots } from "@/service-provider";
+import Link from "next/link";
 import React from "react";
 import { LoadingOverlay } from "@mantine/core";
 import { ArrowRight2 } from "iconsax-react";
-import Link from "next/link";
 
-
+import { Dots } from "@/service-provider";
 import useDashboardSp from "../../hooks/use-dashboard-sp";
 
-
-
-  // A preview of my list of Service providers on the dashboard
-
+// A preview of my list of Service providers on the dashboard
 export const ServiceProvider = () => {
-
- const {sp, loading} = useDashboardSp()
+  const { sp, loading } = useDashboardSp();
 
   return (
     <section className="bg-white py-8 px-4 flex flex-col gap-4 overflow-auto rounded-lg card-shadow">
@@ -47,18 +42,17 @@ export const ServiceProvider = () => {
                   {item.name}
                 </h2>
                 <span className=" rotate-90">
-                <Dots  />
+                  <Dots />
                 </span>
-              
               </div>
               <p className="text-xs font-normal text-uacs-eneutral-8 ">
-               {item.url}
+                {item.url}
               </p>
             </div>
           </div>
         ))}
       </div>
-      <LoadingOverlay visible={loading}/>
+      <LoadingOverlay visible={loading} />
     </section>
   );
 };

@@ -13,7 +13,7 @@ export const DashboardActivities = () => {
   const { activity, loading } = useDashboardActivities();
 
   return (
-    <div className="flex flex-col gap-4 p-6 bg-white card-shadow rounded-lg h-[60vh] overflow-auto">
+    <div className="flex flex-col gap-4 p-6 bg-white card-shadow rounded-lg flex-1 overflow-auto">
       <div className="flex justify-between p-6 items-center">
         <div>
           <h3 className="text-base font-semibold text-eneutral-10  ">

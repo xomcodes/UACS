@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { errorNotification } from "../utils/notification";
+
 import { handleError } from "../utils/error-handler";
 
 interface IServiceP {
@@ -8,15 +8,15 @@ interface IServiceP {
   website_url: string;
   staffs_with_permission: [];
   date: string;
-  test_picture_url: string
+  test_picture_url: string;
   id: number;
-  is_active: boolean
-  picture: string
+  is_active: boolean;
+  picture: string;
 }
 
 function useServiceProviders() {
   const [sp, setSp] = useState<IServiceP[]>([]);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   // Send a Get Request to get list of Sps
 
@@ -26,7 +26,7 @@ function useServiceProviders() {
     )?.access;
 
     try {
-      setLoading(true)
+      setLoading(true);
       const { data } = await axios({
         url: `${process.env.NEXT_PUBLIC_BASE_URL}service_providers/all/`,
         method: "GET",
@@ -34,18 +34,18 @@ function useServiceProviders() {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      setLoading(false)
+      setLoading(false);
       setSp(data.results);
     } catch (error: any) {
-      handleError(error)
-      setLoading(false)
+      handleError(error);
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     getSp();
   }, []);
-  return { sp, getSp,loading };
+  return { sp, getSp, loading };
 }
 
 export default useServiceProviders;

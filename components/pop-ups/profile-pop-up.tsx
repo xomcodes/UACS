@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { Popover } from "@mantine/core";
 import { ArrowDown2, Eye, LogoutCurve } from "iconsax-react";
-import { useRouter } from "next/router";
 
 import { AuthContext, UserType } from "@/context/auth-provider";
-
-
 
 export const ProfilePopUp = () => {
   const [opened, setOpened] = useState(false);

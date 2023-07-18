@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Button, Loader, Modal, Select, TextInput } from "@mantine/core";
+import React, { useState } from "react";
+import { Button, Loader, Modal, Select } from "@mantine/core";
 import axios from "axios";
-
-import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/router";
 
 import { Close } from "./icons";
 import useAddMember from "../../hooks/use-add-member";
-import { errorNotification, successNotification } from "../../utils/notification";
+import { successNotification } from "../../utils/notification";
 import { handleError } from "../../utils/error-handler";
 
 interface IAddMember {
@@ -48,8 +46,8 @@ export function AddMember({ opened, setOpened, spID, getSp }: IAddMember) {
       getSp();
       setOpened(false);
       setLoading(false);
-    } catch (error:any) {
-      handleError(error)
+    } catch (error: any) {
+      handleError(error);
       setLoading(false);
     }
   };
