@@ -32,7 +32,7 @@ export function SpOverviewTable({ elements }: { elements: any[] }) {
 
   return (
  <>
- <FilterContainer/>
+ {/* <FilterContainer/> */}
  
  <div className="p-7">
       <Table
