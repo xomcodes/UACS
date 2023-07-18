@@ -1,10 +1,10 @@
 import React from "react";
-
-import { CardIcon, DataIcon, FilesIcon, FingerIcon } from "@/landing-page";
-import { Logo } from "@/shared/logo";
 import { Button } from "@mantine/core";
 import { useRouter } from "next/router";
 import { motion, useTime, useTransform } from "framer-motion";
+
+import { CardIcon, DataIcon, FilesIcon, FingerIcon } from "@/landing-page";
+import { Logo } from "@/shared/logo";
 // import { Button } from "@/shared";
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
         </header>
 
         <div className="flex flex-1 items-center ">
-          <div className="flex items-center w-full justify-between">
+          <div className="flex items-center w-full justify-between gap-3">
             <div className="">
               <div className="grid justify-items-center  ">
                 <motion.div

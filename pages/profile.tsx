@@ -1,6 +1,7 @@
+import Head from "next/head";
+
 import { Wrapper } from "@/layout";
 import { ProfilePage } from "@/profile";
-import Head from "next/head";
 
 import React from "react";
 

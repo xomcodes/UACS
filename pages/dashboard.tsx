@@ -1,9 +1,9 @@
 import React from "react";
+import Head from "next/head";
 
 
 import { Wrapper } from "@/layout/wrapper";
 import { DashboardOverview } from "@/dashboard/dashboard-overview";
-import Head from "next/head";
 
 function Dashboard() {
   return (

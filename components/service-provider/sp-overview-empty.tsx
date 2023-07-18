@@ -19,7 +19,7 @@ export const SpOverviewEmpty = ({
   console.log(spDetails);
 
   return (
-    <div className="flex flex-col gap-10 flex-1">
+    <div className="flex flex-col gap-[13px] flex-1">
       <section className="px-[clamp(0.75rem,1.6vw,1.5rem)] py-[30px] flex flex-col gap-[13px]">
         <div className="bg-white justify-center items-center py-8 rounded-lg grid  grid-cols-[auto,1fr] gap-8 card-shadow px-6">
           <div className="border-2 border-[#F5F5F6] flex  justify-center w-[191px] rounded-lg">
@@ -101,15 +101,15 @@ export const SpOverviewEmpty = ({
                 </p>
               </div>
 
-              <div className="flex gap-5">
-                <span className="gap-2 border border-uacs-eneutral-6 bg-uacs-eneutral-3 edit-shadow px-4 py-2 flex justify-center items-center rounded-lg max-w-fit ">
+              <div className="flex gap-5 ">
+                <span className="gap-2 border border-uacs-eneutral-6 bg-uacs-eneutral-3 edit-shadow px-4 py-2 flex justify-center items-center rounded-lg max-w-fit cursor-pointer ">
                   <Edit2 size="20" color="#4A4C58" />
                   <h4 className="text-base text-uacs-eneutral-9 font-normal">
                     Edit
                   </h4>
                 </span>
 
-                <span className="gap-2 border border-[#EBEEFC] edit-shadow px-4 py-2 flex justify-center items-center rounded-lg  max-w-fit">
+                <span className=" gap-2 border border-[#EBEEFC] edit-shadow px-4 py-2 flex justify-center items-center rounded-lg  max-w-fit cursor-pointer">
                   <h4 className="text-base text-uacs-ablue-5 font-normal whitespace-nowrap">
                     API Key
                   </h4>
@@ -120,7 +120,11 @@ export const SpOverviewEmpty = ({
 
             <div className="flex flex-col gap-10 justify-between">
               <div className="flex-col flex gap-3">
-                <Switch checked={spDetails?.is_active} />
+                <Switch classNames={{
+               thumb:'bg-white h-5 w-5 ',
+               track: 'h-6 w-11 bg-[#DADADD]'
+                }}
+                checked={spDetails?.is_active} />
               </div>
 
               <span className="gap-2   bg-uacs-ared-1 cursor-pointer edit-shadow px-4 py-2 flex justify-center items-center rounded-lg max-w-fit ">
