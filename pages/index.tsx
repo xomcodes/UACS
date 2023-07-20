@@ -5,7 +5,7 @@ import { motion, useTime, useTransform } from "framer-motion";
 
 import { CardIcon, DataIcon, FilesIcon, FingerIcon } from "@/landing-page";
 import { Logo } from "@/shared/logo";
-// import { Button } from "@/shared";
+
 
 export default function Home() {
   const { push } = useRouter();

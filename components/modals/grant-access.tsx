@@ -288,7 +288,7 @@ export const GrantAccess = ({ opened, getStaff, setOpened }: IGrantAccess) => {
           <Button
             onClick={prevStep}
             leftIcon={<ArrowLeft2 color="#C1C2C6" size="16" />}
-            className="bg-transparent border border-[#DADADD] text-sm rounded-lg h-10 w-fit btn-shadow text-[#C1C2C6]"
+            className="bg-transparent border border-[#DADADD] text-sm rounded-lg h-10 w-fit btn-shadow text-[#C1C2C6] hover:bg-transparent "
             classNames={{
               inner: "gap-[8px]",
             }}

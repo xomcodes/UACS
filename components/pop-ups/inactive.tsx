@@ -32,7 +32,7 @@ export const Inactive = () => {
           <div className=" flex gap-2 py-[10px] px-4">
             <Add size="16" color="#8F9198" variant="Bold" />
             <h2 className="text-uacs-eneutral-8 text-xs font-medium">
-              Add memebers
+              Add members
             </h2>
           </div>
 
